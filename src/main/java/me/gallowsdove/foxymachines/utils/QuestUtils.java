@@ -280,11 +280,11 @@ public class QuestUtils {
             case 45:
                 return "热带鱼";
             case 46:
-                return "凋零";
+                return "女巫";
             case 47:
                 return "凋零骷髅";
             case 48:
-                return "狐狸";
+                return "狼";
             case 49:
                 return "僵尸疣猪兽";
             case 50:
