@@ -1,11 +1,12 @@
 package me.gallowsdove.foxymachines.implementation.mobs;
 
+import io.github.mooy1.infinitylib.common.Scheduler;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import me.gallowsdove.foxymachines.FoxyMachines;
 import me.gallowsdove.foxymachines.Items;
 import me.gallowsdove.foxymachines.abstracts.CustomBoss;
 import me.gallowsdove.foxymachines.abstracts.CustomMob;
 import me.gallowsdove.foxymachines.utils.Utils;
-import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import org.bukkit.*;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.boss.BarColor;
@@ -151,21 +152,21 @@ public class HeadlessHorseman extends CustomBoss {
                             (loc.getY() - l.getY()) * (loc.getY() - l.getY()) +
                             (loc.getZ() - l.getZ()) * (loc.getZ() - l.getZ())) < 26) {
 
-                        FoxyMachines.getInstance().runSync(() -> {
+                        Scheduler.run(4, () -> {
                             loc.getWorld().strikeLightningEffect(loc);
                             if (player.isValid()) {
                                 Location playerLoc = player.getLocation();
                                 if (Math.sqrt((loc.getX() - playerLoc.getX()) * (loc.getX() - playerLoc.getX()) +
-                                        (loc.getY() - playerLoc.getY()) * (loc.getY() - playerLoc.getY())) < 0.8) {
+                                        (loc.getY() - playerLoc.getY()) * (loc.getY() - playerLoc.getY())) < 0.72) {
                                     EntityDamageEvent e = new EntityDamageEvent(player, DamageCause.CUSTOM, 12);
                                     Bukkit.getServer().getPluginManager().callEvent(e);
                                     if (!e.isCancelled()) {
-                                        player.damage(15.6);
-                                        Utils.dealDamageBypassingArmor(player, 1.64);
+                                        player.damage(12.4);
+                                        Utils.dealDamageBypassingArmor(player, 1.72);
                                     }
                                 }
                             }
-                        }, 4);
+                        });
                     }
                 }
             }
@@ -193,7 +194,7 @@ public class HeadlessHorseman extends CustomBoss {
 
         ThreadLocalRandom random = ThreadLocalRandom.current();
 
-        for (int i = 0; i < random.nextInt(2) + 3; i++) {
+        for (int i = 0; i < 3; i++) {
             mob.spawn(new Location(loc.getWorld(), loc.getX() + random.nextDouble(-1, 1),
                     loc.getY() + random.nextDouble(0.6, 1.2), loc.getZ() + random.nextDouble(-1, 1)));
         }

@@ -22,7 +22,7 @@ public class RiddenSkeletonHorse extends CustomMob {
             DamageCause.CRAMMING, DamageCause.POISON, DamageCause.BLOCK_EXPLOSION, DamageCause.ENTITY_EXPLOSION});
 
     public RiddenSkeletonHorse() {
-        super("SKELETON_HORSE", "Skeleton Horse", EntityType.SKELETON_HORSE, 2048);
+        super("SKELETON_HORSE", "Skeleton Horse", EntityType.SKELETON_HORSE, 132);
     }
 
     @Override
@@ -30,7 +30,7 @@ public class RiddenSkeletonHorse extends CustomMob {
         spawned.setCustomName("");
         spawned.setCustomNameVisible(false);
         spawned.setRemoveWhenFarAway(false);
-        spawned.getAttribute(Attribute.GENERIC_ARMOR).setBaseValue(50);
+        spawned.getAttribute(Attribute.GENERIC_ARMOR).setBaseValue(30);
         spawned.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 999999999, 4, false, false));
     }
 
@@ -44,11 +44,9 @@ public class RiddenSkeletonHorse extends CustomMob {
 
         if (!e.isCancelled()) {
             for (Entity entity : horse.getPassengers()) {
-                if (entity instanceof LivingEntity) {
-                    LivingEntity passenger = (LivingEntity) entity;
+                if (entity instanceof LivingEntity passenger) {
                     CustomMob mob = RiddenSkeletonHorse.getByEntity(entity);
-                    if (mob instanceof CustomBoss) {
-                        CustomBoss boss = (CustomBoss) mob;
+                    if (mob instanceof CustomBoss boss) {
                         double finalHealth = horse.getHealth() + passenger.getHealth() - e.getFinalDamage();
                         if (finalHealth > 0) {
                             boss.updateBossBar(passenger, finalHealth / (passenger.getAttribute(Attribute.GENERIC_MAX_HEALTH).getBaseValue() +

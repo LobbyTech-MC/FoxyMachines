@@ -1,10 +1,10 @@
 package me.gallowsdove.foxymachines.listeners;
 
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import me.gallowsdove.foxymachines.Items;
 import me.gallowsdove.foxymachines.utils.QuestUtils;
 import me.gallowsdove.foxymachines.utils.Utils;
-import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import org.bukkit.ChatColor;
 import org.bukkit.Particle;
 import org.bukkit.attribute.Attribute;
@@ -31,14 +31,11 @@ public class SwordListener implements Listener {
     @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
     private void onDamage(EntityDamageByEntityEvent e) {
         if (e.getCause() == EntityDamageEvent.DamageCause.ENTITY_ATTACK || e.getCause() == EntityDamageEvent.DamageCause.ENTITY_SWEEP_ATTACK) {
-            if (e.getDamager() instanceof HumanEntity) {
+            if (e.getDamager() instanceof HumanEntity humanoid) {
                 ThreadLocalRandom random = ThreadLocalRandom.current();
-                HumanEntity humanoid = (HumanEntity) e.getDamager();
                 ItemStack item = humanoid.getInventory().getItemInMainHand();
 
-                if (e.getEntity() instanceof LivingEntity) {
-                    LivingEntity entity = (LivingEntity) e.getEntity();
-
+                if (e.getEntity() instanceof LivingEntity entity) {
                     if (SlimefunUtils.isItemSimilar(item, Items.CURSED_SWORD, false, false)) {
                         ArrayList<PotionEffect> effects = new ArrayList<>();
 
