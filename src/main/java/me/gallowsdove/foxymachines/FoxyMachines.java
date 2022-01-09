@@ -19,6 +19,7 @@ import me.gallowsdove.foxymachines.tasks.QuestTicker;
 
 import javax.annotation.Nonnull;
 import java.io.File;
+import java.io.IOException;
 
 public class FoxyMachines extends AbstractAddon {
     private static FoxyMachines instance;
@@ -50,8 +51,18 @@ public class FoxyMachines extends AbstractAddon {
         ResearchSetup.INSTANCE.init();
 
         this.folderPath = getDataFolder().getAbsolutePath() + File.separator + "data-storage" + File.separator;
-        BerryBushTrimmer.loadTrimmedBlocks();
-        ForcefieldDome.loadDomeLocations();
+        try {
+			BerryBushTrimmer.loadTrimmedBlocks();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+        try {
+			ForcefieldDome.loadDomeLocations();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         Scheduler.run(() -> ForcefieldDome.INSTANCE.setupDomes());
         Scheduler.repeat(240, 10, new QuestTicker());
         Scheduler.repeat(100, new GhostBlockTask());
@@ -68,8 +79,18 @@ public class FoxyMachines extends AbstractAddon {
     @SneakyThrows
     @Override
     public void disable() {
-        BerryBushTrimmer.saveTrimmedBlocks();
-        ForcefieldDome.saveDomeLocations();
+        try {
+			BerryBushTrimmer.saveTrimmedBlocks();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        try {
+			ForcefieldDome.saveDomeLocations();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         if (getConfig().getBoolean("custom-mobs")) {
             CustomBoss.removeBossBars();
         }

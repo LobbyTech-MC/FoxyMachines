@@ -1,10 +1,10 @@
 package me.gallowsdove.foxymachines.utils;
 
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import me.gallowsdove.foxymachines.FoxyMachines;
-import me.gallowsdove.foxymachines.Items;
+import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
+
+import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.apache.commons.lang.Validate;
 import org.bukkit.ChatColor;
 import org.bukkit.NamespacedKey;
@@ -13,39 +13,39 @@ import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import lombok.Getter;
 import me.gallowsdove.foxymachines.FoxyMachines;
 import me.gallowsdove.foxymachines.Items;
-import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 
 public class QuestUtils {
     public static NamespacedKey KEY = new NamespacedKey(FoxyMachines.getInstance(), "quest");
 
     private static final List<Line> CURSED_LINES = List.of(
-            new Line("I would love to kill a ", ", so tasty!"),
-            new Line("Give me a ", ", now!"),
-            new Line("Surely you can help me slay a ", "."),
-            new Line("I want blood....  ", " blood."),
-            new Line("I need a ", " liver."),
-            new Line("I've heard that ", " blood is tasty..."),
-            new Line("", " heart, hmmm..."),
-            new Line("I would slay God himself for some ", " flesh."),
-            new Line("I could be devouring a ", " whole day."),
-            new Line("I've been waiting for too long. Too long or a day to kill a ", "."),
-            new Line("", "'s blood shall be spilled"),
-            new Line("My curse shall devour ", "'s soul"));
+            new Line("我要杀了一个 ", ", 多么美味!"),
+            new Line("给我一个 ", ", 快!"),
+            new Line("你一定可以帮我杀了一个 ", "."),
+            new Line("我想要血....  ", " 的血."),
+            new Line("我需要一个 ", " 的肝脏."),
+            new Line("我听说 ", " 的血非常美味..."),
+            new Line("我要", " 的血, 啊啊..."),
+            new Line("我会为了 ", " 的肉杀了上帝."),
+            new Line("我可以吞噬一个 ", " 随时随地."),
+            new Line("我已经等待不急了. 迫不及待要杀了一个 ", "."),
+            new Line("", "的血要溢出来"),
+            new Line("我的诅咒将吞噬 ", "的灵魂"));
     private static final List<Line> CELESTIAL_LINES = List.of(
-            new Line("I love all beings... except ", ", I hate those."),
-            new Line("All life must be in balance, what's why I need to kill a ", "."),
-            new Line("I am celestial, but I am also a sword. Now get me a ", "."),
-            new Line("I'm sorry, but please get me some ", ". No questions."),
-            new Line("Celestial sword requires a celestial sacrifice. A ", "."),
-            new Line("My next victim should be ", ", just as God intended."),
-            new Line("And the next in line is ... ", "!"),
-            new Line("The God wants a ", " dead."),
-            new Line("For God and honour, go slay a ", "."),
-            new Line("Go, get that ", "! For justice!"),
-            new Line("The stars have aligned. I can clearly see the ", " that shall die by my blade"));
+            new Line("我爱所有众生...除了 ", ", 我讨厌那些."),
+            new Line("所有的生活都必须平衡, 那就是为什么我需要杀死一个 ", "."),
+            new Line("我是天使, 同时我也是一把剑. 现在给我一个 ", "."),
+            new Line("抱歉, 但请给我一些 ", ". 没有问题."),
+            new Line("天使之剑需要一个祭祀品. 一个 ", "."),
+            new Line("我的下一个目标是 ", ", 正如上帝的旨意."),
+            new Line("下一个是 ... ", "!"),
+            new Line("上帝想要 ", " 死."),
+            new Line("为了上帝和荣耀, 去杀了一个 ", "."),
+            new Line("去, 拿下 ", "! 为了正义!"),
+            new Line("星星刚刚亮起. 我清楚地知道 ", " 会死在我的刀下"));
 
     @ParametersAreNonnullByDefault
     public static void sendQuestLine(Player p, SlimefunItemStack item) {
@@ -72,7 +72,7 @@ public class QuestUtils {
     }
 
     public static EntityType toEntityType(int id) {
-        Validate.isTrue(id <= 61, "Entity ID can't be greater than 61");
+        Validate.isTrue(id <= 61, "实体 Id 必须大于 61");
 
         switch (id) {
             case 0:
