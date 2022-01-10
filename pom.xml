@@ -5,7 +5,7 @@
 
     <groupId>me.gallowsdove</groupId>
     <artifactId>FoxyMachines</artifactId>
-    <version>1.0.0</version>
+    <version>zh_CN(LobbyTech)</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -42,7 +42,7 @@
     </pluginRepositories>
 
     <build>
-        <finalName>${project.name} v${project.version}</finalName>
+        <finalName>[Slimefun]${project.name}-${project.version}</finalName>
         <defaultGoal>clean package</defaultGoal>
         <sourceDirectory>${basedir}/src/main/java</sourceDirectory>
 
