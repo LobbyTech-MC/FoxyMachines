@@ -53,9 +53,9 @@ public class RemoteController extends SlimefunItem implements NotPlaceable, Rech
 
                         loc.storePersistently(container);
                         itemInInventory.setItemMeta(meta);
-                        e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "Forcefield dome is now bound to the remote controller.");
+                        e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "穹顶力场已绑定至远程控制器");
                     } else {
-                        e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "You must bind this to a Forcefield Dome block.");
+                        e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "你必须绑定一个穹顶力场");
                     }
                 }
             } else {
@@ -70,13 +70,13 @@ public class RemoteController extends SlimefunItem implements NotPlaceable, Rech
                         if (removeItemCharge(item, COST)) {
                             ForcefieldDome.INSTANCE.switchActive(b, e.getPlayer());
                         } else {
-                            e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "Charge your remote controller first.");
+                            e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "远程控制器需要充能");
                         }
                     } else {
-                        e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "Forcefield belonging to this remote control wasn't found.");
+                        e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "无法找到绑定的穹顶力场");
                     }
                 } else {
-                    e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "Bind this item with Shift + Right Click first!");
+                    e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "使用 Shift + 右键点击进行绑定!");
                 }
             }
         };

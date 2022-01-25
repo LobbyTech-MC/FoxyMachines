@@ -26,7 +26,7 @@ public class PositionSelectorListener implements Listener {
                 Block block = e.getClickedBlock();
                 SimpleLocation loc = new SimpleLocation(block, "primary_position");
                 loc.storePersistently(player.getPersistentDataContainer());
-                player.sendMessage(ChatColor.LIGHT_PURPLE + "Primary position set to " + loc);
+                player.sendMessage(ChatColor.LIGHT_PURPLE + "已设置第一个位置为: " + loc);
             }
         }
     }

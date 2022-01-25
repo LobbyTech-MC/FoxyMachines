@@ -618,10 +618,11 @@ public final class Items{
     public static final SlimefunItemStack POSITION_SELECTOR = new SlimefunItemStack(
             "POSITION_SELECTOR",
             Material.STICK,
-            "&ePosition Selector",
+            "&e位置选择器",
             "",
-            "&7Left click a block to select primary position.",
-            "&7Right click a block to select secondary position.",
+            "&e左键点击&7方块选择第一个位置",
+            "&e右键点击&7方块选择第二个位置",
+            "&8类似于圈地的选择方式",
             "",
             "&c&o&8\u21E8 &e\u26A1 &70 / 200 J"
     );
@@ -629,23 +630,23 @@ public final class Items{
     public static final SlimefunItemStack FILL_WAND = new SlimefunItemStack(
             "FILL_WAND",
             Material.BLAZE_ROD,
-            "&eFill Wand",
+            "&e填充棒",
             "",
-            "&7Select corner points with Position Selector.",
-            "&7Shift right click to select material.",
-            "&7Right click to fill an area.",
+            "&7使用&e位置选择器&7确定两个角的位置",
+            "&eShift+右键点击&7选择材料",
+            "&e右键点击&7进行填充",
             "",
-            "&7Material: &eNone",
+            "&7材料: &e无",
             "&c&o&8\u21E8 &e\u26A1 &70 / 1000 J"
     );
 
     public static final SlimefunItemStack SPONGE_WAND = new SlimefunItemStack(
             "SPONGE_WAND",
             Material.BLAZE_ROD,
-            "&eSponge Wand",
+            "&e海绵棒",
             "",
-            "&7Select corner points with Position Selector.",
-            "&7Right click to remove Water and Lava.",
+            "&7使用&e位置选择器&7确定两个角的位置",
+            "&e右键点击&7移除水和岩浆",
             "",
             "&c&o&8\u21E8 &e\u26A1 &70 / 2000 J"
     );
@@ -653,7 +654,7 @@ public final class Items{
     public static final SlimefunItemStack NUCLEAR_SALT = new SlimefunItemStack(
             "NUCLEAR_SALT",
             Material.LIME_DYE,
-            "&aNuclear Salt",
+            "&a核盐",
             "",
             LoreBuilder.radioactive(Radioactivity.VERY_HIGH)
     );
@@ -661,6 +662,6 @@ public final class Items{
     public static final SlimefunItemStack COMPRESSED_SPONGE = new SlimefunItemStack(
             "COMPRESSED_SPONGE",
             Material.WET_SPONGE,
-            "&fCompressed Sponge"
+            "&f压缩海绵"
     );
 }

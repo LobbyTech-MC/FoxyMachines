@@ -4,11 +4,13 @@ FoxyMachines 向 [Slimefun](https://github.com/Slimefun/Slimefun4) 添加了许�
 
 **本附属需要 Java 16 才能运行!**
 
-**你可以在 items.yml 中禁用任何你不想见到的物品**
+**你可以在 items.yml 中禁用任何你不想要的物品**
 
 汉化作者推荐: 配合 [MobCapturer](https://github.com/ybw0014/MobCapturer) 可轻松将生物捕捉至献祭祭坛。
 
 ## 下载 FoxyMachines
+
+**自动更新**: 汉化版构建#3及以后版本包含*自动更新*功能，默认开启。
 
 你可以在这里下载FoxyMachines: [下载FoxyMachines](https://builds.guizhanss.net/ybw0014/FoxyMachines-CN/master)
 
@@ -41,6 +43,9 @@ FoxyMachines 向 [Slimefun](https://github.com/Slimefun/Slimefun4) 添加了许�
 * 波塞冬的钓竿
 * 远程控制器
 * 幽灵方块移除器
+* 位置选择器
+* 填充棒
+* 海绵棒
 
 ## 武器
 

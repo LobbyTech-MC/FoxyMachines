@@ -46,7 +46,7 @@ public class FillWand extends AbstractWand {
         SimpleLocation loc2 = SimpleLocation.fromPersistentStorage(container, "secondary_position");
 
         if (loc1 == null || loc2 == null || !loc1.getWorldUUID().equals(loc2.getWorldUUID())) {
-            player.sendMessage(ChatColor.RED + "Please select both locations using Position Selector!");
+            player.sendMessage(ChatColor.RED + "请先使用位置选择器确定位置!");
             return locs;
         }
 
@@ -69,14 +69,14 @@ public class FillWand extends AbstractWand {
         }
 
         if ((loc1.getX() - loc2.getX()) * (loc1.getZ() - loc2.getZ()) * (loc1.getZ() - loc2.getZ()) > 4096) {
-            player.sendMessage(ChatColor.RED + "Selected area is too big!");
+            player.sendMessage(ChatColor.RED + "选中的区域过大!");
             return locs;
         }
 
         World world = Bukkit.getWorld(UUID.fromString(loc1.getWorldUUID()));
 
         if (world == null) {
-            player.sendMessage(ChatColor.RED + "Please select both locations using Position Selector!");
+            player.sendMessage(ChatColor.RED + "请先使用位置选择器确定位置!");
             return locs;
         }
 
@@ -91,7 +91,7 @@ public class FillWand extends AbstractWand {
             }
         }
         if (locs.size() == 0) {
-            player.sendMessage(ChatColor.RED + "No valid locations found given the selected points!");
+            player.sendMessage(ChatColor.RED + "选择的区域无效!");
         }
 
         return locs;
