@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import me.gallowsdove.foxymachines.FoxyMachines;
 import me.gallowsdove.foxymachines.Items;
-import net.guizhanss.minecraft.guizhanlib.minecraft.helper.entity.EntityTypeHelper;
+import net.guizhanss.guizhanlib.minecraft.helper.entity.EntityTypeHelper;
 import org.apache.commons.lang.Validate;
 import org.bukkit.ChatColor;
 import org.bukkit.NamespacedKey;

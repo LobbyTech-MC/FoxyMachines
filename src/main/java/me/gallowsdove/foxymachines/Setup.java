@@ -21,7 +21,7 @@ import me.gallowsdove.foxymachines.implementation.multiblock.SacrificialAltarPre
 import me.gallowsdove.foxymachines.implementation.tools.*;
 import me.gallowsdove.foxymachines.implementation.weapons.HealingBow;
 import me.gallowsdove.foxymachines.types.FoxyRecipeType;
-import net.guizhanss.minecraft.guizhanlib.minecraft.helper.MaterialHelper;
+import net.guizhanss.guizhanlib.minecraft.helper.MaterialHelper;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
@@ -572,7 +572,7 @@ final class ResearchSetup {
                 .addItems(Items.GHOST_BLOCK_REMOVER)
                 .register();
         new Research(new NamespacedKey(FoxyMachines.getInstance(), "build_wands"),
-                6669704, "Building made easier.", 36)
+                6669704, "更简单地建造", 36)
                 .addItems(Items.POSITION_SELECTOR, Items.FILL_WAND)
                 .register();
     }
