@@ -19,7 +19,7 @@ public class SacrificialAltarCommand extends SubCommand {
             return;
         }
 
-        p.sendMessage(ChatColor.LIGHT_PURPLE + "https://youtu.be/KbwCCpzq3O0");
+        p.sendMessage(ChatColor.LIGHT_PURPLE + "https://www.bilibili.com/video/BV19L4y1x7vY/");
     }
 
     @Override
