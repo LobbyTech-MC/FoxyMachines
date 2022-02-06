@@ -199,7 +199,7 @@ public final class Items{
             "",
             "&7通电后,在周围32格半径范围",
             "&7生成保护屏障.",
-            "&电力不足或被破坏后屏障消失",
+            "&7电力不足或被破坏后屏障消失",
             "",
             MachineLore.energyPerSecond(ForcefieldDome.ENERGY_CONSUMPTION)
     );
