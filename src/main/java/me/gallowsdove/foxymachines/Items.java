@@ -99,7 +99,12 @@ public final class Items{
             Material.SMITHING_TABLE,
             "&b改进锻造台",
             "",
-            "&7用于改进粘液科技工具、武器以及护甲",
+            "&7用于提升粘液科技工具、武器以及护甲",
+            "&7的品质",
+            "&7需要&a改进核心",
+            "",
+            "&7工具: 木 > 石 > 铁 > 金 > 钻石 > 下界合金",
+            "&7防具: 皮革 > 锁链 > 铁 > 金 > 钻石 > 下界合金",
             "",
             LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
             LoreBuilder.powerPerSecond(ImprovementForge.ENERGY_CONSUMPTION)
@@ -110,8 +115,9 @@ public final class Items{
             "faff2eb498e5c6a04484f0c9f785b448479ab213df95ec91176a308a12add70",
             "&a改进核心",
             "",
-            "&7在改进锻造台中与装备一起使用",
-            "&7可以将该装备改进"
+            "&7在&b改进锻造台&7中",
+            "&7与粘液科技装备一起使用",
+            "&7可以提升该装备的品质"
     );
 
     public static final SlimefunItemStack POTION_MIXER = new SlimefunItemStack(
@@ -141,7 +147,10 @@ public final class Items{
             Material.BEACON,
             "&b区块加载器",
             "",
-            "&7保持其所在区块持续加载"
+            "&7保持其所在区块持续加载",
+            "",
+            "&7每个区块加载器需要:",
+            "&77500 GPS网络复杂度"
     );
 
     public static final SlimefunItemStack STABILIZED_BLISTERING_BLOCK = new SlimefunItemStack(
@@ -254,7 +263,7 @@ public final class Items{
     public static final SlimefunItemStack DAMIENIUM = new SlimefunItemStack(
             "DAMIENIUM",
             Material.GOLD_INGOT,
-            "&a达米恩"
+            "&a达米恩锭"
     );
 
     public static final SlimefunItemStack SWEET_INGOT = new SlimefunItemStack(
@@ -274,7 +283,9 @@ public final class Items{
             Material.POLISHED_BLACKSTONE_BRICKS,
             "&f献祭黑石砖",
             "",
-            "&7用于建造献祭祭坛"
+            "&7用于建造献祭祭坛",
+            "",
+            "&7使用&9/foxy altar&7查看视频建造教程"
     );
 
     public static final SlimefunItemStack SACRIFICIAL_ALTAR_BLACKSTONE_BRICK_WALL = new SlimefunItemStack(
@@ -282,7 +293,9 @@ public final class Items{
             Material.POLISHED_BLACKSTONE_BRICK_WALL,
             "&f献祭黑石砖墙",
             "",
-            "&7用于建造献祭祭坛"
+            "&7用于建造献祭祭坛",
+            "",
+            "&7使用&9/foxy altar&7查看视频建造教程"
     );
 
     public static final SlimefunItemStack SACRIFICIAL_ALTAR_BLACKSTONE_BRICK_STAIRS = new SlimefunItemStack(
@@ -290,7 +303,9 @@ public final class Items{
             Material.POLISHED_BLACKSTONE_BRICK_STAIRS,
             "&f献祭黑石砖楼梯",
             "",
-            "&7用于建造献祭祭坛"
+            "&7用于建造献祭祭坛",
+            "",
+            "&7使用&9/foxy altar&7查看视频建造教程"
     );
 
     public static final SlimefunItemStack SACRIFICIAL_ALTAR_SOUL_TORCH = new SlimefunItemStack(
@@ -298,7 +313,9 @@ public final class Items{
             Material.SOUL_TORCH,
             "&f献祭灵魂火把",
             "",
-            "&7用于建造献祭祭坛"
+            "&7用于建造献祭祭坛",
+            "",
+            "&7使用&9/foxy altar&7查看视频建造教程"
     );
 
     public static final SlimefunItemStack SACRIFICIAL_ALTAR_BLACKSTONE_PRESSURE_PLATE = new SlimefunItemStack(
@@ -306,7 +323,10 @@ public final class Items{
             Material.POLISHED_BLACKSTONE_PRESSURE_PLATE,
             "&f献祭席",
             "",
-            "&7用于建造献祭祭坛"
+            "&7用于建造献祭祭坛",
+            "&7结构搭建完成后右键点击以激活",
+            "",
+            "&7使用&9/foxy altar&7查看视频建造教程"
     );
 
     public static final SlimefunItemStack CURSED_RABBIT_PAW = new SlimefunItemStack(
