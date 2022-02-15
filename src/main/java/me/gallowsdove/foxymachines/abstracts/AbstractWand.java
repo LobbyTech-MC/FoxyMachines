@@ -9,7 +9,12 @@ import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
 import me.gallowsdove.foxymachines.FoxyMachines;
 import me.gallowsdove.foxymachines.Items;
 import me.gallowsdove.foxymachines.utils.Utils;
-import org.bukkit.*;
+import net.guizhanss.guizhanlib.minecraft.helper.MaterialHelper;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -63,10 +68,10 @@ public abstract class AbstractWand extends SlimefunItem implements NotPlaceable,
 
                     if ((material.isBlock() && material.isSolid() && material.isOccluding() && !AbstractWand.BLACKLISTED.contains(material)) ||
                     AbstractWand.WHITELISTED.contains(material)) {
-                        player.sendMessage(ChatColor.LIGHT_PURPLE + "已设置材料为: " + material);
+                        player.sendMessage(ChatColor.LIGHT_PURPLE + "已设置材料为: " + MaterialHelper.getName(material));
                         container.set(AbstractWand.MATERIAL_KEY, PersistentDataType.STRING, material.toString());
                         List<String> lore = this.getItem().getItemMeta().getLore();
-                        lore.set(lore.size() - 2, ChatColor.GRAY + "材料: " + ChatColor.YELLOW + material);
+                        lore.set(lore.size() - 2, ChatColor.GRAY + "材料: " + ChatColor.YELLOW + MaterialHelper.getName(material));
                         meta.setLore(lore);
                         itemInInventory.setItemMeta(meta);
                     }
