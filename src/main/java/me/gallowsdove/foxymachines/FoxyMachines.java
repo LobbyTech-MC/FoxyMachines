@@ -45,6 +45,7 @@ public class FoxyMachines extends AbstractAddon {
         Events.registerListener(new BoostedRailListener());
         Events.registerListener(new BerryBushListener());
         Events.registerListener(new ForcefieldListener());
+        Events.registerListener(new GhostBlockListener());
         Events.registerListener(new RemoteControllerListener());
         Events.registerListener(new SacrificialAltarListener());
         Events.registerListener(new SwordListener());
