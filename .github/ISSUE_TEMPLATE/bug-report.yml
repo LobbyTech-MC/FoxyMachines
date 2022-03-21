@@ -20,8 +20,6 @@ body:
       label: 检查项目
       description: 在汇报之前，你需要确认
       options:
-        - label: 你使用的是由ybw0014提供的汉化版本(版本号中含有ybw0014)
-          required: true
         - label: 你使用的是从构建站下载的版本 (https://builds.guizhanss.net)
           required: true
         - label: 你已经检验过下载的文件的校验和，确认已完整下载文件 (暂未推出)
