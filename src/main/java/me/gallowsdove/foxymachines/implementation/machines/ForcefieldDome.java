@@ -3,7 +3,6 @@ package me.gallowsdove.foxymachines.implementation.machines;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import io.github.mooy1.infinitylib.common.Scheduler;
-import io.github.thebusybiscuit.slimefun4.api.events.PlayerRightClickEvent;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.EnergyNetComponent;
@@ -116,37 +115,34 @@ public final class ForcefieldDome extends SlimefunItem implements EnergyNetCompo
 
     @Nonnull
     public BlockUseHandler onUse() {
-        return new BlockUseHandler() {
-            @Override
-            public void onRightClick(@Nonnull PlayerRightClickEvent e) {
-                if (!SlimefunUtils.isItemSimilar(e.getPlayer().getInventory().getItemInMainHand(), Items.REMOTE_CONTROLLER, true, false)) {
-                    Block b = e.getClickedBlock().get();
-                    if (BlockStorage.getLocationInfo(b.getLocation(), "cooldown").equals("false")) {
-                        String active = BlockStorage.getLocationInfo(b.getLocation(), "active");
-                        if (active.equals("false")) {
-                            if (getCharge(b.getLocation()) >= ENERGY_CONSUMPTION) {
-                                setDomeActive(b);
-                                e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "已激活穹顶力场");
-
-                                BlockStorage.addBlockInfo(b, "cooldown", "true");
-                                Scheduler.runAsync(200, () ->
-                                        BlockStorage.addBlockInfo(b, "cooldown", "false"));
-                            } else {
-                                e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "电力不足");
-                            }
-                        } else {
-                            setDomeInactive(b);
-                            e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "已关闭穹顶力场");
+        return e -> {
+            if (!SlimefunUtils.isItemSimilar(e.getPlayer().getInventory().getItemInMainHand(), Items.REMOTE_CONTROLLER, true, false)) {
+                Block b = e.getClickedBlock().get();
+                if (BlockStorage.getLocationInfo(b.getLocation(), "cooldown").equals("false")) {
+                    String active = BlockStorage.getLocationInfo(b.getLocation(), "active");
+                    if (active.equals("false")) {
+                        if (getCharge(b.getLocation()) >= ENERGY_CONSUMPTION) {
+                            setDomeActive(b);
+                            e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "已激活穹顶力场");
 
                             BlockStorage.addBlockInfo(b, "cooldown", "true");
                             Scheduler.runAsync(200, () ->
                                     BlockStorage.addBlockInfo(b, "cooldown", "false"));
+                        } else {
+                            e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "电力不足");
                         }
                     } else {
-                        e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "你必须等待至少10秒才能再次激活穹顶力场");
+                        setDomeInactive(b);
+                        e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "已关闭穹顶力场");
+
+                        BlockStorage.addBlockInfo(b, "cooldown", "true");
+                        Scheduler.runAsync(200, () ->
+                                BlockStorage.addBlockInfo(b, "cooldown", "false"));
                     }
-                    e.cancel();
+                } else {
+                    e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "你必须等待至少10秒才能再次激活穹顶力场");
                 }
+                e.cancel();
             }
         };
     }

@@ -10,7 +10,6 @@ import me.gallowsdove.foxymachines.implementation.materials.GhostBlock;
 import net.guizhanss.guizhanlib.minecraft.helper.MaterialHelper;
 import org.bukkit.Material;
 import org.bukkit.entity.FallingBlock;
-import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 
@@ -33,24 +32,21 @@ public class GhostBlockRemover extends SlimefunItem {
 
     @Nonnull
     protected EntityInteractHandler onInteract() {
-        return new EntityInteractHandler() {
-            @Override
-            public void onInteract(PlayerInteractEntityEvent e, ItemStack itemStack, boolean b) {
-                if (e.getRightClicked() instanceof FallingBlock) {
-                    FallingBlock block = (FallingBlock) e.getRightClicked();
+        return (e, itemStack, b) -> {
+            if (e.getRightClicked() instanceof FallingBlock) {
+                FallingBlock block = (FallingBlock) e.getRightClicked();
 
-                    if (block.getPersistentDataContainer().has(GhostBlock.KEY, PersistentDataType.STRING)) {
-                        Material material = block.getBlockData().getMaterial();
-                        SlimefunItemStack stack = new SlimefunItemStack(
-                                "GHOST_BLOCK_" + material.name().toUpperCase(),
-                                material,
-                                "幽灵方块: &6" + MaterialHelper.getName(material),
-                                "",
-                                "&7无法触碰的方块");
+                if (block.getPersistentDataContainer().has(GhostBlock.KEY, PersistentDataType.STRING)) {
+                    Material material = block.getBlockData().getMaterial();
+                    SlimefunItemStack stack = new SlimefunItemStack(
+                            "GHOST_BLOCK_" + material.name().toUpperCase(),
+                            material,
+                            "幽灵方块: &6" + MaterialHelper.getName(material),
+                            "",
+                            "&7无法触碰的方块");
 
-                        block.getWorld().dropItemNaturally(block.getLocation(), stack);
-                        block.remove();
-                    }
+                    block.getWorld().dropItemNaturally(block.getLocation(), stack);
+                    block.remove();
                 }
             }
         };

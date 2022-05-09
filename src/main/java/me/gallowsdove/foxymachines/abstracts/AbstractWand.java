@@ -85,6 +85,7 @@ public abstract class AbstractWand extends SlimefunItem implements NotPlaceable,
                         lore.set(lore.size() - 2, ChatColor.GRAY + "材料: " + ChatColor.YELLOW + MaterialHelper.getName(material));
                         meta.setLore(lore);
                         itemInInventory.setItemMeta(meta);
+                        setItemCharge(itemInInventory, getItemCharge(itemInInventory)); // To update it in lore
                     }
                 }
             } else {
