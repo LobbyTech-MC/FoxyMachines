@@ -33,13 +33,7 @@ public class FoxyMachines extends AbstractAddon {
     @Override
     @SneakyThrows
     public void enable() {
-
         instance = this;
-
-        if (getConfig().getBoolean("auto-update") &&
-                getDescription().getVersion().startsWith("Build")) {
-            new GuizhanBuildsUpdater(this, getFile(), "ybw0014", "FoxyMachines-CN", "master", false).start();
-        }
 
         Events.registerListener(new ChunkLoaderListener());
         Events.registerListener(new BoostedRailListener());
