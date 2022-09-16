@@ -16,7 +16,7 @@ import me.gallowsdove.foxymachines.listeners.*;
 import me.gallowsdove.foxymachines.tasks.GhostBlockTask;
 import me.gallowsdove.foxymachines.tasks.MobTicker;
 import me.gallowsdove.foxymachines.tasks.QuestTicker;
-import net.guizhanss.guizhanlib.updater.GuizhanBuildsUpdater;
+import net.guizhanss.guizhanlibplugin.updater.GuizhanBuildsUpdaterWrapper;
 
 import javax.annotation.Nonnull;
 import java.io.File;
@@ -34,6 +34,10 @@ public class FoxyMachines extends AbstractAddon {
     @SneakyThrows
     public void enable() {
         instance = this;
+
+        if (getConfig().getBoolean("auto-update") && getDescription().getVersion().startsWith("Build")) {
+            GuizhanBuildsUpdaterWrapper.start(this, getFile(), "ybw0014", "FoxyMachines-CN", "master", false);
+        }
 
         Events.registerListener(new ChunkLoaderListener());
         Events.registerListener(new BoostedRailListener());
