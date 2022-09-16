@@ -36,18 +36,15 @@ public class ChunkLoaderListener implements Listener {
         Block b = e.getBlockPlaced();
         if (b.getChunk().isForceLoaded()) {
             e.setCancelled(true);
-            p.sendMessage(ChatColor.LIGHT_PURPLE + "该区块已加载!");
+            p.sendMessage(ChatColor.LIGHT_PURPLE + "This chunk is already loaded!");
             return;
         }
 
         NamespacedKey key = new NamespacedKey(FoxyMachines.getInstance(), "chunkloaders");
 
-        int i = 1;
-        if (p.getPersistentDataContainer().has(key, PersistentDataType.INTEGER)) {
-            i = p.getPersistentDataContainer().get(key, PersistentDataType.INTEGER) + 1;
-        }
+        int i = p.getPersistentDataContainer().getOrDefault(key, PersistentDataType.INTEGER, 0) + 1;
+        Config cfg = new Config(FoxyMachines.getInstance());
         if (!p.hasPermission("foxymachines.bypass-chunk-loader-limit")) {
-            Config cfg = new Config(FoxyMachines.getInstance());
             int max = cfg.getInt("max-chunk-loaders");
             if(max != 0 && max < i) {
                 p.sendMessage(ChatColor.LIGHT_PURPLE + "已达到区块加载器最大数量限制: " + max);
@@ -55,9 +52,10 @@ public class ChunkLoaderListener implements Listener {
                 return;
             }
         }
-
-        if (Slimefun.getGPSNetwork().getNetworkComplexity(p.getUniqueId()) < 7500*i) {
-            p.sendMessage(ChatColor.LIGHT_PURPLE + "你需要更高的GPS网络复杂度来放置更多的区块加载器");
+        int currentComplexity = Slimefun.getGPSNetwork().getNetworkComplexity(p.getUniqueId());
+        int requiredComplexity = cfg.getInt("gps-complexity-per-loader") * i;
+        if (currentComplexity < requiredComplexity) {
+            p.sendMessage(ChatColor.LIGHT_PURPLE + "你的GPS网络复杂度 " + currentComplexity + "/" + requiredComplexity + " 不满足区块加载器的放置条件");
             e.setCancelled(true);
             return;
         }
@@ -67,4 +65,3 @@ public class ChunkLoaderListener implements Listener {
         BlockStorage.addBlockInfo(b, "owner", p.getUniqueId().toString());
     }
 }
-

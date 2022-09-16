@@ -502,7 +502,7 @@ public final class Items{
             Material.NETHERITE_CHESTPLATE,
             "&a抗性胸甲",
             "&7抗性提升 I",
-            "&7生命恢复 II"
+            "&7生命恢复 I"
     );
     static {
         RESISTANT_CHESTPLATE.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 5);

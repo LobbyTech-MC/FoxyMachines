@@ -5,6 +5,9 @@ auto-update: true
 # 设置为0时无限制
 max-chunk-loaders: 8
 
+# 每个区块加载器所需的GPS网络复杂度
+gps-complexity-per-loader: 7500
+
 # 是否启用幽灵方块
 ghost-blocks: true
 
