@@ -36,7 +36,7 @@ public class ChunkLoaderListener implements Listener {
         Block b = e.getBlockPlaced();
         if (b.getChunk().isForceLoaded()) {
             e.setCancelled(true);
-            p.sendMessage(ChatColor.LIGHT_PURPLE + "This chunk is already loaded!");
+            p.sendMessage(ChatColor.LIGHT_PURPLE + "该区块已经处于强制加载状态，无法放置区块加载器!");
             return;
         }
 
