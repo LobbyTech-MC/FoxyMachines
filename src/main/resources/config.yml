@@ -14,3 +14,9 @@ ghost-blocks: true
 # 是否启用神秘科技中的怪物
 # 禁用后部分物品的配方会改变，部分物品会被移除
 custom-mobs: true
+
+# 填充棒每次可填充的最大方块数量
+max-fill-wand-blocks: 4096
+
+# 海绵棒每次可清除的方块数量
+max-sponge-wand-blocks: 16384
