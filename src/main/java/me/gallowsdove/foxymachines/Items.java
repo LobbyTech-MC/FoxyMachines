@@ -568,13 +568,19 @@ public final class Items{
     public static final SlimefunItemStack CURSED_SHARD = new SlimefunItemStack(
             "CURSED_SHARD",
             Material.NETHERITE_SCRAP,
-            "&c诅咒碎片"
+            "&c诅咒碎片",
+            "",
+            "&7合成材料",
+            "&7将该物品投掷到献祭祭坛中可重置任务..."
     );
 
     public static final SlimefunItemStack CELESTIAL_SHARD = new SlimefunItemStack(
             "CELESTIAL_SHARD",
             Material.PRISMARINE_SHARD,
-            "&e天界碎片"
+            "&e天界碎片",
+            "",
+            "&7合成材料",
+            "&7将该物品投掷到献祭祭坛中可重置任务..."
     );
 
     public static final SlimefunItemStack EQUANIMOUS_GEM = new SlimefunItemStack(
