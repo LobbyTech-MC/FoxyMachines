@@ -127,12 +127,11 @@ public abstract class CustomBoss extends CustomMob {
         bossbar.setVisible(true);
         double progress;
         if (entity.isInsideVehicle() && entity.getVehicle() instanceof LivingEntity vehicle) {
-            progress = (entity.getHealth() + vehicle.getHealth()) / (entity.getAttribute(Attribute.GENERIC_MAX_HEALTH).getBaseValue() +
-                vehicle.getAttribute(Attribute.GENERIC_MAX_HEALTH).getBaseValue());
+            bossbar.setProgress(Math.min((entity.getHealth() + vehicle.getHealth()) / (entity.getAttribute(Attribute.GENERIC_MAX_HEALTH).getBaseValue() +
+                    vehicle.getAttribute(Attribute.GENERIC_MAX_HEALTH).getBaseValue()), 1));
         } else {
-            progress = entity.getHealth() / entity.getAttribute(Attribute.GENERIC_MAX_HEALTH).getBaseValue();
+            bossbar.setProgress(Math.min(entity.getHealth() / entity.getAttribute(Attribute.GENERIC_MAX_HEALTH).getBaseValue(), 1));
         }
-        bossbar.setProgress(Math.min(progress, 1));
         instances.put(entity, bossbar);
         return bossbar;
     }
