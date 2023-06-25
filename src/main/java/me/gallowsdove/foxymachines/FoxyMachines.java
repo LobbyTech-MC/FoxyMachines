@@ -29,7 +29,7 @@ public class FoxyMachines extends AbstractAddon {
     public String folderPath;
 
     public FoxyMachines() {
-        super ("ybw0014", "FoxyMachines-CN", "master", "auto-update");
+        super ("SlimefunGuguProject", "FoxyMachines", "master", "auto-update");
     }
 
     @Override
@@ -45,7 +45,7 @@ public class FoxyMachines extends AbstractAddon {
         }
 
         if (getConfig().getBoolean("auto-update") && getDescription().getVersion().startsWith("Build")) {
-            GuizhanUpdater.start(this, getFile(), "ybw0014", "FoxyMachines-CN", "master");
+            GuizhanUpdater.start(this, getFile(), "ybw0014", "FoxyMachines", "master");
         }
 
         Events.registerListener(new ChunkLoaderListener());
