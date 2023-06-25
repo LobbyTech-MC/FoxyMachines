@@ -17,10 +17,11 @@ import me.gallowsdove.foxymachines.tasks.GhostBlockTask;
 import me.gallowsdove.foxymachines.tasks.MobTicker;
 import me.gallowsdove.foxymachines.tasks.QuestTicker;
 import me.gallowsdove.foxymachines.utils.QuestUtils;
-import net.guizhanss.guizhanlibplugin.updater.GuizhanBuildsUpdaterWrapper;
+import net.guizhanss.guizhanlibplugin.updater.GuizhanUpdater;
 
 import javax.annotation.Nonnull;
 import java.io.File;
+import java.util.logging.Level;
 
 public class FoxyMachines extends AbstractAddon {
     private static FoxyMachines instance;
@@ -36,8 +37,15 @@ public class FoxyMachines extends AbstractAddon {
     public void enable() {
         instance = this;
 
+        if (!getServer().getPluginManager().isPluginEnabled("GuizhanLibPlugin")) {
+            getLogger().log(Level.SEVERE, "本插件需要 鬼斩前置库插件(GuizhanLibPlugin) 才能运行!");
+            getLogger().log(Level.SEVERE, "从此处下载: https://50l.cc/gzlib");
+            getServer().getPluginManager().disablePlugin(this);
+            return;
+        }
+
         if (getConfig().getBoolean("auto-update") && getDescription().getVersion().startsWith("Build")) {
-            GuizhanBuildsUpdaterWrapper.start(this, getFile(), "ybw0014", "FoxyMachines-CN", "master", false);
+            GuizhanUpdater.start(this, getFile(), "ybw0014", "FoxyMachines-CN", "master");
         }
 
         Events.registerListener(new ChunkLoaderListener());
