@@ -12,16 +12,9 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.handlers.EntityInteractHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
-import io.github.thebusybiscuit.slimefun4.libraries.commons.lang.StringUtils;
 import me.gallowsdove.foxymachines.Items;
 import me.gallowsdove.foxymachines.implementation.materials.GhostBlock;
 import net.guizhanss.guizhanlib.minecraft.helper.MaterialHelper;
-import org.bukkit.Material;
-import org.bukkit.entity.FallingBlock;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.persistence.PersistentDataType;
-
-import javax.annotation.Nonnull;
 
 public class GhostBlockRemover extends SlimefunItem {
 

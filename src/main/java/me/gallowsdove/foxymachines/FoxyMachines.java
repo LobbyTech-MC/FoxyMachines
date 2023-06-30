@@ -22,6 +22,7 @@ import net.guizhanss.guizhanlibplugin.updater.GuizhanUpdater;
 
 import javax.annotation.Nonnull;
 import java.io.File;
+import java.io.IOException;
 import java.util.logging.Level;
 
 public class FoxyMachines extends AbstractAddon {
