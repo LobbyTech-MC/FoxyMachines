@@ -2,10 +2,8 @@ package me.gallowsdove.foxymachines.implementation.tools;
 
 import javax.annotation.Nonnull;
 
-import org.apache.commons.lang.StringUtils;
 import org.bukkit.Material;
 import org.bukkit.entity.FallingBlock;
-import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 
@@ -17,12 +15,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.libraries.commons.lang.StringUtils;
 import me.gallowsdove.foxymachines.Items;
 import me.gallowsdove.foxymachines.implementation.materials.GhostBlock;
-import org.bukkit.Material;
-import org.bukkit.entity.FallingBlock;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.persistence.PersistentDataType;
-
-import javax.annotation.Nonnull;
 
 public class GhostBlockRemover extends SlimefunItem {
 

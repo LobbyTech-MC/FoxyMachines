@@ -66,7 +66,7 @@ public final class Items{
 
     public static SubItemGroup GHOST_BLOCKS_ITEM_GROUP = new SubItemGroup(
             new NamespacedKey(FoxyMachines.getInstance(), "ghost_blocks"),
-            new CustomItemStack(Material.GLASS, "&5灵魂方块", "", "&a> 点击打开"));
+            MAIN_ITEM_GROUP, new CustomItemStack(Material.GLASS, "&5灵魂方块", "", "&a> 点击打开"));
 
     // Items
     public static final SlimefunItemStack ELECTRIC_WIND_STAFF = new SlimefunItemStack(

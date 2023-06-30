@@ -1,9 +1,10 @@
 package me.gallowsdove.foxymachines.utils;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Setter;
-import me.gallowsdove.foxymachines.FoxyMachines;
+import java.util.UUID;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
@@ -13,6 +14,7 @@ import org.bukkit.persistence.PersistentDataType;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.Setter;
 import me.gallowsdove.foxymachines.FoxyMachines;
 
 @EqualsAndHashCode
@@ -29,11 +31,12 @@ public class SimpleLocation {
     @Getter
     private final String prefix;
 
-    public SimpleLocation(int x, int y, int z, String worldUUID) {
+    public SimpleLocation(int x, int y, int z, String worldUUID, String prefix) {
 		this.x = x;
 		this.y = y;
 		this.z = z;
 		this.worldUUID = worldUUID;
+		this.prefix = prefix;
 		
 	}
 
@@ -90,4 +93,39 @@ public class SimpleLocation {
     public String toString() {
         return "X: " + this.x + " Y: " + this.y + " Z: " + this.z;
     }
+
+    public int getX() {
+		// TODO Auto-generated method stub
+		return x;
+	}
+    
+	public int getY() {
+		// TODO Auto-generated method stub
+		return y;
+	}
+
+	public int getZ() {
+		// TODO Auto-generated method stub
+		return z;
+	}
+
+	public void setX(int x) {
+		// TODO Auto-generated method stub
+		this.x = x;
+	}
+
+	public void setY(int y) {
+		// TODO Auto-generated method stub
+		this.y = y;
+	}
+	
+	public void setZ(int z) {
+		// TODO Auto-generated method stub
+		this.z = z;
+	}
+
+	public String getWorldUUID() {
+		// TODO Auto-generated method stub
+		return worldUUID;
+	}
 }
