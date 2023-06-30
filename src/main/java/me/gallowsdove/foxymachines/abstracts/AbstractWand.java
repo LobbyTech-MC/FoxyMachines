@@ -7,13 +7,19 @@ import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.NotPlaceable;
 import io.github.thebusybiscuit.slimefun4.core.attributes.Rechargeable;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
-import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
 import me.gallowsdove.foxymachines.FoxyMachines;
 import me.gallowsdove.foxymachines.Items;
 import me.gallowsdove.foxymachines.utils.SimpleLocation;
 import me.gallowsdove.foxymachines.utils.Utils;
-import org.bukkit.*;
+import net.guizhanss.guizhanlib.minecraft.helper.MaterialHelper;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
+import org.bukkit.Tag;
+import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -59,7 +65,7 @@ public abstract class AbstractWand extends SlimefunItem implements NotPlaceable,
             Tag<Material> tag = Bukkit.getTag(Tag.REGISTRY_BLOCKS, NamespacedKey.minecraft(value.toLowerCase()), Material.class);
             SlimefunTag slimefunTag = SlimefunTag.getTag(value);
             if (tag == null && slimefunTag == null) {
-                FoxyMachines.log(Level.WARNING, "Invalid Entry in \"" + name + "\": " + value);
+                FoxyMachines.log(Level.WARNING, "无效的配置值 \"" + name + "\": " + value);
                 continue;
             }
 
@@ -86,18 +92,18 @@ public abstract class AbstractWand extends SlimefunItem implements NotPlaceable,
 
             if (player.isSneaking() && !isRemoving() && e.getClickedBlock().isPresent()) {
                 Material material = e.getClickedBlock().get().getType();
-                String humanizedName = ChatUtils.humanize(material.toString());
+                String humanizedName = MaterialHelper.getName(material);
                 if ((material.isBlock() && material.isSolid() && material.isOccluding() && !BLACKLIST.contains(material)) ||
                         WHITELIST.contains(material)) {
-                    player.sendMessage(ChatColor.LIGHT_PURPLE + "Material set to: " + humanizedName);
+                    player.sendMessage(ChatColor.LIGHT_PURPLE + "已设置材料为：" + humanizedName);
                     container.set(AbstractWand.MATERIAL_KEY, PersistentDataType.STRING, material.toString());
                     List<String> lore = this.getItem().getItemMeta().getLore();
-                    lore.set(lore.size() - 2, ChatColor.GRAY + "Material: " + ChatColor.YELLOW + humanizedName);
+                    lore.set(lore.size() - 2, ChatColor.GRAY + "材料：" + ChatColor.YELLOW + humanizedName);
                     meta.setLore(lore);
                     itemInInventory.setItemMeta(meta);
                     setItemCharge(itemInInventory, getItemCharge(itemInInventory)); // To update it in lore
                 } else {
-                    player.sendMessage(ChatColor.RED + "Cannot use: " + humanizedName + ", with the fill wand");
+                    player.sendMessage(ChatColor.RED + "无法设置 " + humanizedName + " 为材料！");
                 }
             } else {
                 if (isRemoving() && !container.has(MATERIAL_KEY, PersistentDataType.STRING)) {
@@ -112,7 +118,7 @@ public abstract class AbstractWand extends SlimefunItem implements NotPlaceable,
 
                 Inventory inventory = player.getInventory();
                 if (!container.has(MATERIAL_KEY, PersistentDataType.STRING)) {
-                    player.sendMessage(ChatColor.RED + "Select a building material with Shift + Right Click!");
+                    player.sendMessage(ChatColor.RED + "使用 Shift + 右键点击 先选择材料!");
                     return;
                 }
                 Material material = Material.getMaterial(container.get(MATERIAL_KEY, PersistentDataType.STRING));
@@ -126,12 +132,12 @@ public abstract class AbstractWand extends SlimefunItem implements NotPlaceable,
                             Bukkit.getScheduler().runTask(FoxyMachines.getInstance(), () -> loc.getBlock().setType(material));
                         }
                     } else {
-                        player.sendMessage(ChatColor.RED + "Your item doesn't have enough energy for that!");
-                        player.sendMessage(ChatColor.RED + "Energy needed: " + getCostPerBlock() * locs.size());
+                        player.sendMessage(ChatColor.RED + "物品充能不足!");
+                        player.sendMessage(ChatColor.RED + "需要: " + getCostPerBlock() * locs.size());
                     }
                 } else {
-                    player.sendMessage(ChatColor.RED + "There aren't enough materials in your inventory!");
-                    player.sendMessage(ChatColor.RED + "Current items: " + Utils.countItemInInventory(inventory, blocks) + " Needed: " + locs.size());
+                    player.sendMessage(ChatColor.RED + "你的物品栏中没有足够的物品!");
+                    player.sendMessage(ChatColor.RED + "当前拥有: " + Utils.countItemInInventory(inventory, blocks) + " 需要: " + locs.size());
                 }
             }
         };
@@ -144,7 +150,7 @@ public abstract class AbstractWand extends SlimefunItem implements NotPlaceable,
         SimpleLocation loc2 = SimpleLocation.fromPersistentStorage(container, "secondary_position");
 
         if (loc1 == null || loc2 == null || !loc1.getWorldUUID().equals(loc2.getWorldUUID())) {
-            player.sendMessage(ChatColor.RED + "Please select both locations using Position Selector!");
+            player.sendMessage(ChatColor.RED + "请先使用位置选择器选择位置！");
             return locs;
         }
 
@@ -167,14 +173,14 @@ public abstract class AbstractWand extends SlimefunItem implements NotPlaceable,
         }
 
         if ((loc1.getX() - loc2.getX()) * (loc1.getY() - loc2.getY()) * (loc1.getZ() - loc2.getZ()) > getMaxBlocks()) {
-            player.sendMessage(ChatColor.RED + "Selected area is too big!");
+            player.sendMessage(ChatColor.RED + "所选区域过大！");
             return locs;
         }
 
         World world = Bukkit.getWorld(UUID.fromString(loc1.getWorldUUID()));
 
         if (world == null) {
-            player.sendMessage(ChatColor.RED + "Please select both locations using Position Selector!");
+            player.sendMessage(ChatColor.RED + "请先使用位置选择器选择位置！");
             return locs;
         }
 
@@ -190,7 +196,7 @@ public abstract class AbstractWand extends SlimefunItem implements NotPlaceable,
         }
 
         if (locs.isEmpty()) {
-            player.sendMessage(ChatColor.RED + "No valid locations found given the selected points!");
+            player.sendMessage(ChatColor.RED + "选择区域无效！");
         }
 
         return locs;

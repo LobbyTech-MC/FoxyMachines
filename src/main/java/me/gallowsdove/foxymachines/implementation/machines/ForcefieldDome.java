@@ -127,7 +127,7 @@ public final class ForcefieldDome extends SlimefunItem implements EnergyNetCompo
                     if (active.equals("false")) {
                         if (getCharge(b.getLocation()) >= ENERGY_CONSUMPTION) {
                             setDomeActive(b);
-                            e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "屏障已生成");
+                            e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "已激活穹顶力场");
 
                             BlockStorage.addBlockInfo(b, "cooldown", "true");
                             Scheduler.runAsync(200, () ->
@@ -137,14 +137,14 @@ public final class ForcefieldDome extends SlimefunItem implements EnergyNetCompo
                         }
                     } else {
                         setDomeInactive(b);
-                        e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "屏障已生成");
+                        e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "已关闭穹顶力场");
 
                         BlockStorage.addBlockInfo(b, "cooldown", "true");
                         Scheduler.runAsync(200, () ->
                                 BlockStorage.addBlockInfo(b, "cooldown", "false"));
                     }
                 } else {
-                    e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "You must wait at least 10 seconds before activating the dome again.");
+                    e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "你必须等待至少10秒才能再次激活穹顶力场");
                 }
                 e.cancel();
             }
@@ -200,7 +200,7 @@ public final class ForcefieldDome extends SlimefunItem implements EnergyNetCompo
             if (active.equals("false")) {
                 if (getCharge(b.getLocation()) >= ENERGY_CONSUMPTION) {
                     setDomeActive(b);
-                    p.sendMessage(ChatColor.LIGHT_PURPLE + "屏障已生成");
+                    p.sendMessage(ChatColor.LIGHT_PURPLE + "穹顶力场已激活.");
 
                     BlockStorage.addBlockInfo(b, "cooldown", "true");
                     Scheduler.runAsync(200, () ->
@@ -210,14 +210,14 @@ public final class ForcefieldDome extends SlimefunItem implements EnergyNetCompo
                 }
             } else {
                 setDomeInactive(b);
-                p.sendMessage(ChatColor.LIGHT_PURPLE + "屏障未生成");
+                p.sendMessage(ChatColor.LIGHT_PURPLE + "穹顶力场已关闭");
 
                 BlockStorage.addBlockInfo(b, "cooldown", "true");
                 Scheduler.runAsync(200, () ->
                         BlockStorage.addBlockInfo(b, "cooldown", "false"));
             }
         } else {
-            p.sendMessage(ChatColor.LIGHT_PURPLE + "两次生成屏障间隔至少10秒");
+            p.sendMessage(ChatColor.LIGHT_PURPLE + "你必须等待至少10秒才能再次启用穹顶力场");
         }
     }
 

@@ -71,7 +71,7 @@ public class GhostBlock extends SlimefunItem {
 
                         item.setAmount(item.getAmount() - 1);
                     } else {
-                        p.sendMessage(ChatColor.LIGHT_PURPLE + "你没有权限在这里放置!");
+                        p.sendMessage(ChatColor.LIGHT_PURPLE + "你没有权限在这里放置幽灵方块!");
                     }
                 }
             }

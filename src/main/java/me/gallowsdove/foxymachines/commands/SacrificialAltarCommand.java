@@ -10,7 +10,7 @@ import java.util.List;
 
 public class SacrificialAltarCommand extends SubCommand {
     public SacrificialAltarCommand() {
-        super("altar", "Gives you a link to the Sacrificial Altar", "foxymachines.info");
+        super("altar", "查看如何建造献祭祭坛", "foxymachines.info");
     }
 
     @Override
@@ -19,7 +19,7 @@ public class SacrificialAltarCommand extends SubCommand {
             return;
         }
 
-        p.sendMessage(ChatColor.LIGHT_PURPLE + "https://youtu.be/KbwCCpzq3O0");
+        p.sendMessage(ChatColor.LIGHT_PURPLE + "https://www.bilibili.com/video/BV19L4y1x7vY/");
     }
 
     @Override

@@ -46,7 +46,7 @@ public class PositionSelector extends SlimefunItem implements NotPlaceable, Rech
 
                 SimpleLocation loc = new SimpleLocation(block, "secondary_position");
                 loc.storePersistently(player.getPersistentDataContainer());
-                player.sendMessage(ChatColor.LIGHT_PURPLE + "Secondary position set to " + loc);
+                player.sendMessage(ChatColor.LIGHT_PURPLE + "已设置第二个位置为: " + loc);
             }
         };
     }

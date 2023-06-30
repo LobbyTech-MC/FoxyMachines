@@ -117,10 +117,10 @@ public class SwordListener implements Listener {
 
             if (SlimefunUtils.isItemSimilar(inventory.getItemInMainHand(), Items.CURSED_SWORD, false, false)) {
                 inventory.addItem(new SlimefunItemStack(Items.CURSED_SHARD, 1));
-                p.sendMessage(ChatColor.RED + "The Cursed Sword is pleased.");
+                p.sendMessage(ChatColor.RED + "你满足了诅咒之剑的要求。");
             } else if (SlimefunUtils.isItemSimilar(inventory.getItemInMainHand(), Items.CELESTIAL_SWORD, false, false)) {
                 inventory.addItem(new SlimefunItemStack(Items.CELESTIAL_SHARD, 1));
-                p.sendMessage(ChatColor.YELLOW + "The Celestial Sword is pleased.");
+                p.sendMessage(ChatColor.YELLOW + "你满足了天界之剑的要求。");
             }
 
             QuestUtils.nextQuestLine(p);

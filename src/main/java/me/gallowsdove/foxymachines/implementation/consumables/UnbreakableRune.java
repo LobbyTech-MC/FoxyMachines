@@ -81,13 +81,13 @@ public class UnbreakableRune extends SimpleSlimefunItem<ItemDropHandler> {
                         setUnbreakable(itemStack);
                         l.getWorld().dropItemNaturally(l, itemStack);
 
-                        p.sendMessage(ChatColor.LIGHT_PURPLE + "这个物品已经无法破坏");
+                        p.sendMessage(ChatColor.LIGHT_PURPLE + "你的物品已经不可破坏了");
                     } else {
-                        p.sendMessage(ChatColor.LIGHT_PURPLE + "这个物品不能变成无法破坏");
+                        p.sendMessage(ChatColor.LIGHT_PURPLE + "该物品无法变成不可破坏");
                     }
                 });
             } else {
-                p.sendMessage(ChatColor.LIGHT_PURPLE + "这个物品不能变成无法破坏");
+                p.sendMessage(ChatColor.LIGHT_PURPLE + "该物品无法变成不可破坏");
             }
         }
     }

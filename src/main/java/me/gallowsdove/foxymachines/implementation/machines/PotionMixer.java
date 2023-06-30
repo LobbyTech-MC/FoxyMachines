@@ -59,7 +59,7 @@ public class PotionMixer extends SlimefunItem implements EnergyNetComponent {
         });
 
 
-        new BlockMenuPreset(getId(), "&6Potion Mixer") {
+        new BlockMenuPreset(getId(), "&6药水混合器") {
 
             @Override
             public void init() {
@@ -393,21 +393,16 @@ public class PotionMixer extends SlimefunItem implements EnergyNetComponent {
                     potionMeta.addCustomEffect(effect, false);
                 }
 
-                List<String> lore = new ArrayList<String>() {/**
-					 * 
-					 */
-					private static final long serialVersionUID = 1L;
-
-				{
-                    add("Not usable in Brewing Stand");
+                List<String> lore = new ArrayList<>() {{
+                    add("无法在酿造台中使用");
                 }};
                 potionMeta.setBasePotionData(new PotionData(PotionType.UNCRAFTABLE, false, false));
                 switch (potion1.getType()) {
                     case POTION -> potionMeta.setDisplayName(ChatColor.AQUA + "混合药水");
                     case LINGERING_POTION -> {
-                        lore.add(ChatColor.RED + "The time shown is incorrect due to a Minecraft");
-                        lore.add(ChatColor.RED + "bug, multiply it by 4 to get the real time.");
-                        potionMeta.setDisplayName(ChatColor.AQUA + "混合滞留药水");
+                        lore.add(ChatColor.RED + "由于Minecraft的bug导致持续时间显示有问题");
+                        lore.add(ChatColor.RED + "将持续时间乘以4来计算实际持续时间");
+                        potionMeta.setDisplayName(ChatColor.AQUA + "混合滞留型药水");
                     }
                     case SPLASH_POTION -> potionMeta.setDisplayName(ChatColor.AQUA + "混合喷溅型药水");
                 }

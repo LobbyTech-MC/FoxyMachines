@@ -40,10 +40,10 @@ public class SacrificialAltarPressurePlate extends SlimefunItem {
                 Block b = e.getBlockPlaced();
                 if (isComplete(b)) {
                     BlockStorage.addBlockInfo(b, "complete", "true");
-                    e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "魔法祭坛已经激活");
+                    e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "献祭祭坛已激活");
                 } else {
                     BlockStorage.addBlockInfo(b, "complete", "false");
-                    e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "补全您的祭坛方块结构, 然后再次单击此方块将其激活。");
+                    e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "搭建完成献祭祭坛后点击献祭席来激活献祭祭坛");
                 }
             }
         };
@@ -55,10 +55,10 @@ public class SacrificialAltarPressurePlate extends SlimefunItem {
             if (BlockStorage.getLocationInfo(b.getLocation(), "complete").equals("false")) {
                 if (isComplete(b)) {
                     BlockStorage.addBlockInfo(b, "complete", "true");
-                    e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "魔法祭坛已经激活");
+                    e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "献祭祭坛已激活");
                 } else {
                     BlockStorage.addBlockInfo(b, "complete", "false");
-                    e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "祭坛方块结构方块未补全!");
+                    e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "献祭祭坛未搭建完成");
                 }
             }
 
@@ -72,7 +72,7 @@ public class SacrificialAltarPressurePlate extends SlimefunItem {
             public void onPlayerBreak(@Nonnull BlockBreakEvent e, @Nonnull ItemStack item, @Nonnull List<ItemStack> drops) {
                 BlockStorage.addBlockInfo(e.getBlock(), "complete", null);
                 BlockStorage.clearBlockInfo(e.getBlock());
-                e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "魔法祭坛已被破坏!");
+                e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "献祭祭坛已损坏");
             }
         };
     }

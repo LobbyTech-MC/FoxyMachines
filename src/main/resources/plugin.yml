@@ -16,6 +16,8 @@ website: https://github.com/GallowsDove/FoxyMachines
 ## This is required and marks Slimefun as a plugin dependency.
 depend: [Slimefun]
 
+softdepend: [GuizhanLibPlugin]
+
 ## This value is automatically replaced by the version specified in your pom.xml file, do not change this.
 version: ${project.version}
 

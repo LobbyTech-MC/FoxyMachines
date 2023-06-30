@@ -1,10 +1,10 @@
 package me.gallowsdove.foxymachines.utils;
 
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
-import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 import lombok.Getter;
 import me.gallowsdove.foxymachines.FoxyMachines;
 import me.gallowsdove.foxymachines.Items;
+import net.guizhanss.guizhanlib.minecraft.helper.entity.EntityTypeHelper;
 import org.bukkit.ChatColor;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.EntityType;
@@ -26,30 +26,30 @@ public class QuestUtils {
 
     private static final List<EntityType> QUEST_MOBS = new ArrayList<>();
     private static final List<Line> CURSED_LINES = List.of(
-            new Line("我要杀了一个 ", ", 多么美味!"),
-            new Line("给我一个 ", ", 快!"),
-            new Line("你一定可以帮我杀了一个 ", "."),
-            new Line("我想要血....  ", " 的血."),
-            new Line("我需要一个 ", " 的肝脏."),
-            new Line("我听说 ", " 的血非常美味..."),
-            new Line("我要", " 的血, 啊啊..."),
-            new Line("我会为了 ", " 的肉杀了上帝."),
-            new Line("我可以吞噬一个 ", " 随时随地."),
-            new Line("我已经等待不急了. 迫不及待要杀了一个 ", "."),
-            new Line("", "的血要溢出来"),
-            new Line("我的诅咒将吞噬 ", "的灵魂"));
+            new Line("我很想杀一个", ", 真的很美味!"),
+            new Line("马上!给我一个", "!"),
+            new Line("你一定能帮我杀一个", "。"),
+            new Line("我渴望鲜血....  ", "的鲜血。"),
+            new Line("我需要", "的肝脏!"),
+            new Line("我听说", "的血液很鲜美..."),
+            new Line("", "心脏, hmmm..."),
+            new Line("我会因为", "肉而杀了上帝。"),
+            new Line("我可能会食用", "一整天。"),
+            new Line("我等待这一天很久了，是时候去击杀一个", "了。"),
+            new Line("", "血流成河!"),
+            new Line("我的诅咒将吞噬", "的灵魂!"));
     private static final List<Line> CELESTIAL_LINES = List.of(
-            new Line("我爱所有众生...除了 ", ", 我讨厌那些."),
-            new Line("所有的生活都必须平衡, 那就是为什么我需要杀死一个 ", "."),
-            new Line("我是天使, 同时我也是一把剑. 现在给我一个 ", "."),
-            new Line("抱歉, 但请给我一些 ", ". 没有问题."),
-            new Line("天使之剑需要一个祭祀品. 一个 ", "."),
-            new Line("我的下一个目标是 ", ", 正如上帝的旨意."),
-            new Line("下一个是 ... ", "!"),
-            new Line("上帝想要 ", " 死."),
-            new Line("为了上帝和荣耀, 去杀了一个 ", "."),
-            new Line("去, 拿下 ", "! 为了正义!"),
-            new Line("星星刚刚亮起. 我清楚地知道 ", " 会死在我的刀下"));
+            new Line("我热爱所有生命，除了", "，我讨厌它们!"),
+            new Line("所有必须平衡，这就是为什么我需要击杀一个", "。"),
+            new Line("我来自天界，但我也是一把剑。现在，给我一个 ", "。"),
+            new Line("抱歉，但现在请给我一个", "。不要质疑我!"),
+            new Line("天界之剑需要获得献祭，", "!"),
+            new Line("下一位受害者是", "，如上帝所愿。"),
+            new Line("接下来是... ", "!"),
+            new Line("上帝想要", "死。"),
+            new Line("为了上帝和荣耀，去杀死一只", "。"),
+            new Line("去吧，为了正义! 杀死一只", "!"),
+            new Line("众星云集，我可以看到", "将被我的剑刃杀死。"));
 
 
     public static void init() {
@@ -62,7 +62,7 @@ public class QuestUtils {
             try {
                 QuestUtils.QUEST_MOBS.add(EntityType.valueOf(questMob));
             } catch (IllegalArgumentException ignored) {
-                FoxyMachines.log(Level.WARNING, "Invalid Entity Type in \"quest-mobs\": " + questMob);
+                FoxyMachines.log(Level.WARNING, "\"quest-mobs\" 包含无效的生物类型: " + questMob);
             }
         }
     }
@@ -136,7 +136,7 @@ public class QuestUtils {
             id = nextQuestLine(p);
         }
 
-        return ChatUtils.humanize(QUEST_MOBS.get(id).name().toLowerCase());
+        return EntityTypeHelper.getName(QUEST_MOBS.get(id));
     }
 }
 

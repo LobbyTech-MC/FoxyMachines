@@ -36,7 +36,7 @@ public class ChunkLoaderListener implements Listener {
         Block b = e.getBlockPlaced();
         if (b.getChunk().isForceLoaded()) {
             e.setCancelled(true);
-            p.sendMessage(ChatColor.LIGHT_PURPLE + "This chunk is already loaded!");
+            p.sendMessage(ChatColor.LIGHT_PURPLE + "该区块已经处于强制加载状态，无法放置区块加载器!");
             return;
         }
 
@@ -47,7 +47,7 @@ public class ChunkLoaderListener implements Listener {
         if (!p.hasPermission("foxymachines.bypass-chunk-loader-limit")) {
             int max = cfg.getInt("max-chunk-loaders");
             if(max != 0 && max < i) {
-                p.sendMessage(ChatColor.LIGHT_PURPLE + "Maximum amount of chunk loaders already placed: " + max);
+                p.sendMessage(ChatColor.LIGHT_PURPLE + "已达到区块加载器最大数量限制: " + max);
                 e.setCancelled(true);
                 return;
             }
@@ -55,7 +55,7 @@ public class ChunkLoaderListener implements Listener {
         int currentComplexity = Slimefun.getGPSNetwork().getNetworkComplexity(p.getUniqueId());
         int requiredComplexity = cfg.getInt("gps-complexity-per-loader") * i;
         if (currentComplexity < requiredComplexity) {
-            p.sendMessage(ChatColor.LIGHT_PURPLE + "You have " + currentComplexity + "/" + requiredComplexity + " GPS Network Complexity required to place another Chunk Loader.");
+            p.sendMessage(ChatColor.LIGHT_PURPLE + "你的GPS网络复杂度 " + currentComplexity + "/" + requiredComplexity + " 不满足区块加载器的放置条件");
             e.setCancelled(true);
             return;
         }

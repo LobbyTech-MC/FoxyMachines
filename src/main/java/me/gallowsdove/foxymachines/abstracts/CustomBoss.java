@@ -125,6 +125,7 @@ public abstract class CustomBoss extends CustomMob {
         BossBarStyle style = getBossBarStyle();
         BossBar bossbar = Bukkit.createBossBar(KEY, style.name, style.color, style.style, style.flags);
         bossbar.setVisible(true);
+        double progress;
         if (entity.isInsideVehicle() && entity.getVehicle() instanceof LivingEntity vehicle) {
             bossbar.setProgress(Math.min((entity.getHealth() + vehicle.getHealth()) / (entity.getAttribute(Attribute.GENERIC_MAX_HEALTH).getBaseValue() +
                     vehicle.getAttribute(Attribute.GENERIC_MAX_HEALTH).getBaseValue()), 1));
