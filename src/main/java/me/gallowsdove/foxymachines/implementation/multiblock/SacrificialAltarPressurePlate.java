@@ -1,6 +1,5 @@
 package me.gallowsdove.foxymachines.implementation.multiblock;
 
-import io.github.thebusybiscuit.slimefun4.api.events.PlayerRightClickEvent;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
@@ -21,7 +20,7 @@ import java.util.List;
 
 public class SacrificialAltarPressurePlate extends SlimefunItem {
     public SacrificialAltarPressurePlate() {
-        super(Items.ITEM_GROUP, Items.SACRIFICIAL_ALTAR_BLACKSTONE_PRESSURE_PLATE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
+        super(Items.ALTAR_ITEM_GROUP, Items.SACRIFICIAL_ALTAR_BLACKSTONE_PRESSURE_PLATE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.GHAST_TEAR), SlimefunItems.MAGIC_LUMP_3, new ItemStack(Material.GHAST_TEAR),
                 SlimefunItems.MAGIC_LUMP_3, new ItemStack(Material.POLISHED_BLACKSTONE_PRESSURE_PLATE), SlimefunItems.MAGIC_LUMP_3,
                 new ItemStack(Material.GHAST_TEAR), SlimefunItems.MAGIC_LUMP_3, new ItemStack(Material.GHAST_TEAR)
@@ -51,22 +50,19 @@ public class SacrificialAltarPressurePlate extends SlimefunItem {
     }
 
     private BlockUseHandler onUse() {
-        return new BlockUseHandler() {
-            @Override
-            public void onRightClick(PlayerRightClickEvent e) {
-                Block b = e.getClickedBlock().get();
-                if (BlockStorage.getLocationInfo(b.getLocation(), "complete").equals("false")) {
-                    if (isComplete(b)) {
-                        BlockStorage.addBlockInfo(b, "complete", "true");
-                        e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "魔法祭坛已经激活");
-                    } else {
-                        BlockStorage.addBlockInfo(b, "complete", "false");
-                        e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "祭坛方块结构方块未补全!");
-                    }
+        return e -> {
+            Block b = e.getClickedBlock().get();
+            if (BlockStorage.getLocationInfo(b.getLocation(), "complete").equals("false")) {
+                if (isComplete(b)) {
+                    BlockStorage.addBlockInfo(b, "complete", "true");
+                    e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "魔法祭坛已经激活");
+                } else {
+                    BlockStorage.addBlockInfo(b, "complete", "false");
+                    e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "祭坛方块结构方块未补全!");
                 }
-
-                e.cancel();
             }
+
+            e.cancel();
         };
     }
 

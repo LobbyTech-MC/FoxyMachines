@@ -1,10 +1,12 @@
 package me.gallowsdove.foxymachines;
 
 import io.github.mooy1.infinitylib.machines.MachineLore;
-import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.api.items.groups.NestedItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.items.groups.SubItemGroup;
 import io.github.thebusybiscuit.slimefun4.core.attributes.MachineTier;
 import io.github.thebusybiscuit.slimefun4.core.attributes.MachineType;
+import io.github.thebusybiscuit.slimefun4.core.attributes.Radioactivity;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.LoreBuilder;
 import io.github.thebusybiscuit.slimefun4.utils.itemstack.ColoredFireworkStar;
@@ -19,17 +21,54 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.meta.ItemMeta;
 
-
 public final class Items{
 
-    public static ItemGroup ITEM_GROUP = new ItemGroup(
+    // Item groups
+    public static NestedItemGroup MAIN_ITEM_GROUP = new NestedItemGroup(
             new NamespacedKey(FoxyMachines.getInstance(), "foxy_machines"),
             new CustomItemStack(Material.SHEARS, "&4魔法机器", "", "&a> 点击打开"));
 
-    public static ItemGroup GHOST_BLOCKS_ITEM_GROUP = new ItemGroup(
+    public static SubItemGroup MATERIALS_ITEM_GROUP = new SubItemGroup(
+            new NamespacedKey(FoxyMachines.getInstance(), "materials"),
+            MAIN_ITEM_GROUP,
+            new CustomItemStack(Material.GOLD_INGOT, "&bMaterials")
+    );
+
+    public static SubItemGroup MACHINES_ITEM_GROUP = new SubItemGroup(
+            new NamespacedKey(FoxyMachines.getInstance(), "machines"),
+            MAIN_ITEM_GROUP,
+            new CustomItemStack(Material.BEACON, "&aMachines")
+    );
+
+    public static SubItemGroup TOOLS_ITEM_GROUP = new SubItemGroup(
+            new NamespacedKey(FoxyMachines.getInstance(), "tools"),
+            MAIN_ITEM_GROUP,
+            new CustomItemStack(Material.BLAZE_ROD, "&eTools")
+    );
+
+    public static SubItemGroup WEAPONS_AND_ARMORS_ITEM_GROUP = new SubItemGroup(
+            new NamespacedKey(FoxyMachines.getInstance(), "weapons_and_armors"),
+            MAIN_ITEM_GROUP,
+            new CustomItemStack(Material.NETHERITE_SWORD, "&aWeapons and Armors")
+    );
+
+    public static SubItemGroup ALTAR_ITEM_GROUP = new SubItemGroup(
+        new NamespacedKey(FoxyMachines.getInstance(), "sacrificial_altars"),
+        MAIN_ITEM_GROUP,
+        new CustomItemStack(Material.POLISHED_BLACKSTONE_BRICKS, "&4Sacrificial Altar")
+    );
+
+    public static SubItemGroup BOSSES_ITEM_GROUP = new SubItemGroup(
+        new NamespacedKey(FoxyMachines.getInstance(), "bosses"),
+        MAIN_ITEM_GROUP,
+        new CustomItemStack(Material.DRAGON_HEAD, "&cBosses")
+    );
+
+    public static SubItemGroup GHOST_BLOCKS_ITEM_GROUP = new SubItemGroup(
             new NamespacedKey(FoxyMachines.getInstance(), "ghost_blocks"),
             new CustomItemStack(Material.GLASS, "&5灵魂方块", "", "&a> 点击打开"));
 
+    // Items
     public static final SlimefunItemStack ELECTRIC_WIND_STAFF = new SlimefunItemStack(
             "ELECTRIC_WIND_STAFF",
             Material.BLAZE_ROD,
@@ -442,7 +481,7 @@ public final class Items{
             Material.NETHERITE_CHESTPLATE,
             "&a抗性胸甲",
             "&7抗性提升 I",
-            "&7生命恢复 II"
+            "&7生命恢复 I"
     );
     static {
         RESISTANT_CHESTPLATE.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 5);
@@ -508,13 +547,17 @@ public final class Items{
     public static final SlimefunItemStack CURSED_SHARD = new SlimefunItemStack(
             "CURSED_SHARD",
             Material.NETHERITE_SCRAP,
-            "&c魔法碎片"
+            "&c魔法碎片",
+            "&7合成材料",
+            "&7丢入祭坛后将重置任务进度..."
     );
 
     public static final SlimefunItemStack CELESTIAL_SHARD = new SlimefunItemStack(
             "CELESTIAL_SHARD",
             Material.PRISMARINE_SHARD,
-            "&e天使碎片"
+            "&e天使碎片",
+            "&7合成材料",
+            "&7丢入祭坛后将重置任务进度..."
     );
 
     public static final SlimefunItemStack EQUANIMOUS_GEM = new SlimefunItemStack(
@@ -616,5 +659,54 @@ public final class Items{
             "&e灵魂方块移除器",
             "",
             "&7右键移除一个灵魂方块"
+    );
+
+    public static final SlimefunItemStack POSITION_SELECTOR = new SlimefunItemStack(
+            "POSITION_SELECTOR",
+            Material.STICK,
+            "&ePosition Selector",
+            "",
+            "&7Left click a block to select primary position.",
+            "&7Right click a block to select secondary position.",
+            "",
+            "&c&o&8\u21E8 &e\u26A1 &70 / 200 J"
+    );
+
+    public static final SlimefunItemStack FILL_WAND = new SlimefunItemStack(
+            "FILL_WAND",
+            Material.BLAZE_ROD,
+            "&eFill Wand",
+            "",
+            "&7Select corner points with Position Selector.",
+            "&7Shift right click to select material.",
+            "&7Right click to fill an area.",
+            "",
+            "&7Material: &eNone",
+            "&c&o&8\u21E8 &e\u26A1 &70 / 1000 J"
+    );
+
+    public static final SlimefunItemStack SPONGE_WAND = new SlimefunItemStack(
+            "SPONGE_WAND",
+            Material.BLAZE_ROD,
+            "&eSponge Wand",
+            "",
+            "&7Select corner points with Position Selector.",
+            "&7Right click to remove Water and Lava.",
+            "",
+            "&c&o&8\u21E8 &e\u26A1 &70 / 2000 J"
+    );
+
+    public static final SlimefunItemStack NUCLEAR_SALT = new SlimefunItemStack(
+            "NUCLEAR_SALT",
+            Material.LIME_DYE,
+            "&aNuclear Salt",
+            "",
+            LoreBuilder.radioactive(Radioactivity.VERY_HIGH)
+    );
+
+    public static final SlimefunItemStack COMPRESSED_SPONGE = new SlimefunItemStack(
+            "COMPRESSED_SPONGE",
+            Material.WET_SPONGE,
+            "&fCompressed Sponge"
     );
 }

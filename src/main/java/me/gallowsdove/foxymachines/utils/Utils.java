@@ -1,8 +1,14 @@
 package me.gallowsdove.foxymachines.utils;
 
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+
+import javax.annotation.Nonnull;
 
 public class Utils {
+    private Utils() {}
+
     public static void dealDamageBypassingArmor(LivingEntity entity, double damage) {
         if (damage >= 0) {
             if (entity.getAbsorptionAmount() >= 0) {
@@ -22,5 +28,16 @@ public class Utils {
                 }
             }
         }
+    }
+
+    public static int countItemInInventory(@Nonnull Inventory inventory, @Nonnull ItemStack itemStack) {
+        int amount = 0;
+        for (ItemStack item : inventory.getContents()) {
+            if (itemStack.isSimilar(item)) {
+                amount = amount + item.getAmount();
+            }
+        }
+
+        return amount;
     }
 }

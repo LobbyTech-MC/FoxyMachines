@@ -3,7 +3,6 @@ package me.gallowsdove.foxymachines.implementation.machines;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import io.github.mooy1.infinitylib.common.Scheduler;
-import io.github.thebusybiscuit.slimefun4.api.events.PlayerRightClickEvent;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.EnergyNetComponent;
@@ -48,7 +47,7 @@ public final class ForcefieldDome extends SlimefunItem implements EnergyNetCompo
     public static ForcefieldDome INSTANCE = new ForcefieldDome();
 
     public ForcefieldDome() {
-        super(Items.ITEM_GROUP, Items.FORCEFIELD_DOME, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
+        super(Items.MACHINES_ITEM_GROUP, Items.FORCEFIELD_DOME, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
                 Items.SWEETENED_SWEET_INGOT, Items.FORCEFIELD_STABILIZER, Items.SWEETENED_SWEET_INGOT,
                 Items.FORCEFIELD_STABILIZER, Items.FORCEFIELD_ENGINE, Items.FORCEFIELD_STABILIZER,
                 Items.SWEETENED_SWEET_INGOT, Items.FORCEFIELD_STABILIZER, Items.SWEETENED_SWEET_INGOT
@@ -91,7 +90,8 @@ public final class ForcefieldDome extends SlimefunItem implements EnergyNetCompo
                 BlockStorage.addBlockInfo(b, "owner", e.getPlayer().getUniqueId().toString());
                 BlockStorage.addBlockInfo(b, "active", "false");
                 BlockStorage.addBlockInfo(b, "cooldown", "false");
-                domeLocations.add(new SimpleLocation(b));
+                domeLocations.add(new SimpleLocation(b, "forcefield"));
+                // saveDomeLocations();
             }
         };
     }
@@ -104,7 +104,7 @@ public final class ForcefieldDome extends SlimefunItem implements EnergyNetCompo
             public void onPlayerBreak(@Nonnull BlockBreakEvent e, @Nonnull ItemStack item, @Nonnull List<ItemStack> list) {
                 Block b = e.getBlock();
                 setDomeInactive(b);
-                SimpleLocation loc = new SimpleLocation(b);
+                SimpleLocation loc = new SimpleLocation(b, "forcefield");
                 if (domeLocations.contains(loc)) {
                     domeLocations.remove(loc);
                     try {
@@ -119,37 +119,34 @@ public final class ForcefieldDome extends SlimefunItem implements EnergyNetCompo
 
     @Nonnull
     public BlockUseHandler onUse() {
-        return new BlockUseHandler() {
-            @Override
-            public void onRightClick(@Nonnull PlayerRightClickEvent e) {
-                if (!SlimefunUtils.isItemSimilar(e.getPlayer().getInventory().getItemInMainHand(), Items.REMOTE_CONTROLLER, true, false)) {
-                    Block b = e.getClickedBlock().get();
-                    if (BlockStorage.getLocationInfo(b.getLocation(), "cooldown").equals("false")) {
-                        String active = BlockStorage.getLocationInfo(b.getLocation(), "active");
-                        if (active.equals("false")) {
-                            if (getCharge(b.getLocation()) >= ENERGY_CONSUMPTION) {
-                                setDomeActive(b);
-                                e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "屏障已生成");
-
-                                BlockStorage.addBlockInfo(b, "cooldown", "true");
-                                Scheduler.runAsync(200, () ->
-                                        BlockStorage.addBlockInfo(b, "cooldown", "false"));
-                            } else {
-                                e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "电力不足");
-                            }
-                        } else {
-                            setDomeInactive(b);
-                            e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "屏障未生成");
+        return e -> {
+            if (!SlimefunUtils.isItemSimilar(e.getPlayer().getInventory().getItemInMainHand(), Items.REMOTE_CONTROLLER, true, false)) {
+                Block b = e.getClickedBlock().get();
+                if (BlockStorage.getLocationInfo(b.getLocation(), "cooldown").equals("false")) {
+                    String active = BlockStorage.getLocationInfo(b.getLocation(), "active");
+                    if (active.equals("false")) {
+                        if (getCharge(b.getLocation()) >= ENERGY_CONSUMPTION) {
+                            setDomeActive(b);
+                            e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "屏障已生成");
 
                             BlockStorage.addBlockInfo(b, "cooldown", "true");
                             Scheduler.runAsync(200, () ->
                                     BlockStorage.addBlockInfo(b, "cooldown", "false"));
+                        } else {
+                            e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "电力不足");
                         }
                     } else {
-                        e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "两次生成屏障间隔至少10秒");
+                        setDomeInactive(b);
+                        e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "屏障已生成");
+
+                        BlockStorage.addBlockInfo(b, "cooldown", "true");
+                        Scheduler.runAsync(200, () ->
+                                BlockStorage.addBlockInfo(b, "cooldown", "false"));
                     }
-                    e.cancel();
+                } else {
+                    e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "You must wait at least 10 seconds before activating the dome again.");
                 }
+                e.cancel();
             }
         };
     }

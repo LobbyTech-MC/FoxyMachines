@@ -1,9 +1,7 @@
 # FoxyMachines
 FoxyMachines adds various machines and tools to [Slimefun](https://github.com/Slimefun/Slimefun4).
-It's a passion project for GallowsDove.
 
 ### Requires at least Java 16!
-
 
 ### [Download](https://thebusybiscuit.github.io/builds/GallowsDove/FoxyMachines/master/)
 [![Build Status](https://thebusybiscuit.github.io/builds/GallowsDove/FoxyMachines/master/badge.svg)](https://thebusybiscuit.github.io/builds/GallowsDove/FoxyMachines/master)
@@ -26,6 +24,9 @@ It's a passion project for GallowsDove.
 * Poseidon's Fishing Rod
 * Remote Controller
 * Ghost Block Remover
+* Position Selector
+* Fill Wand
+* Sponge Wand
 
 ## Weapons
 * Healing Bow

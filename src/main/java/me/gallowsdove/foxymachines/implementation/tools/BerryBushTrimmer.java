@@ -22,12 +22,13 @@ import javax.annotation.Nonnull;
 import java.io.*;
 import java.lang.reflect.Type;
 import java.util.HashSet;
+import java.util.Set;
 
 public class BerryBushTrimmer extends SlimefunItem {
-    public static HashSet<SimpleLocation> TRIMMED_BLOCKS = new HashSet<>();
+    public static Set<SimpleLocation> TRIMMED_BLOCKS = new HashSet<>();
 
     public BerryBushTrimmer() {
-        super(Items.ITEM_GROUP, Items.BERRY_BUSH_TRIMMER, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
+        super(Items.TOOLS_ITEM_GROUP, Items.BERRY_BUSH_TRIMMER, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 null, SlimefunItems.DAMASCUS_STEEL_INGOT, null,
                 SlimefunItems.DAMASCUS_STEEL_INGOT, null, SlimefunItems.DAMASCUS_STEEL_INGOT,
                 new ItemStack(Material.STICK), SlimefunItems.DAMASCUS_STEEL_INGOT, null
@@ -36,7 +37,7 @@ public class BerryBushTrimmer extends SlimefunItem {
 
     @Override
     public void preRegister() {
-        addItemHandler(onItemUse(), onToolUse());
+        addItemHandler(onUse(), onToolUse());
     }
 
     @Nonnull
@@ -45,13 +46,13 @@ public class BerryBushTrimmer extends SlimefunItem {
     }
 
     @Nonnull
-    private ItemUseHandler onItemUse() {
+    protected ItemUseHandler onUse() {
         return e -> {
             if (e.getClickedBlock().isPresent() && e.getClickedBlock().get().getType() == Material.SWEET_BERRY_BUSH) {
                 Block b = e.getClickedBlock().get();
                 Player p = e.getPlayer();
 
-                if (TRIMMED_BLOCKS.add(new SimpleLocation(b))) {
+                if (TRIMMED_BLOCKS.add(new SimpleLocation(b, "trimmed"))) {
                     ItemStack shears = e.getItem();
                     ItemMeta shearsMeta = e.getItem().getItemMeta();
                     int damage = ((Damageable) shearsMeta).getDamage() + 4;
@@ -86,9 +87,9 @@ public class BerryBushTrimmer extends SlimefunItem {
             file.createNewFile();
         }
 
-        BufferedWriter writer = new BufferedWriter(new FileWriter(file, false));
-        writer.write(gson.toJson(TRIMMED_BLOCKS));
-        writer.close();
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, false))) {
+            writer.write(gson.toJson(TRIMMED_BLOCKS));
+        }
     }
 
     public static void loadTrimmedBlocks() throws IOException {
@@ -102,20 +103,15 @@ public class BerryBushTrimmer extends SlimefunItem {
             file.createNewFile();
         }
 
-        BufferedReader reader = new BufferedReader(new FileReader(file));
-        String json = reader.readLine();
-        reader.close();
+        try (BufferedReader reader = new BufferedReader(new FileReader(file));) {
+            String json = reader.readLine();
+            Type type = new TypeToken<HashSet<SimpleLocation>>() {}.getType();
+            TRIMMED_BLOCKS = gson.fromJson(json, type);
 
-        Type type = new TypeToken<HashSet<SimpleLocation>>() {
-
-			/**
-			 * 
-			 */
-			private static final long serialVersionUID = 1L;}.getType();
-        TRIMMED_BLOCKS = gson.fromJson(json, type);
-
-        if (TRIMMED_BLOCKS == null) {
-            TRIMMED_BLOCKS = new HashSet<>();
+            if (TRIMMED_BLOCKS == null) {
+                TRIMMED_BLOCKS = new HashSet<>();
+            }
         }
+
     }
 }

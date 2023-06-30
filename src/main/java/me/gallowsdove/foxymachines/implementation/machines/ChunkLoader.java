@@ -26,7 +26,7 @@ import java.util.UUID;
 
 public class ChunkLoader extends SlimefunItem {
     public ChunkLoader() {
-        super(Items.ITEM_GROUP, Items.CHUNK_LOADER, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
+        super(Items.MACHINES_ITEM_GROUP, Items.CHUNK_LOADER, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 Items.REINFORCED_STRING, Items.STABILIZED_BLISTERING_BLOCK, Items.REINFORCED_STRING,
                 SlimefunItems.ENRICHED_NETHER_ICE, Items.STABILIZED_BLISTERING_BLOCK, Items.WIRELESS_TRANSMITTER,
                 Items.REINFORCED_STRING, Items.STABILIZED_BLISTERING_BLOCK, Items.REINFORCED_STRING
@@ -44,34 +44,18 @@ public class ChunkLoader extends SlimefunItem {
             @Override
             public void onPlayerBreak(@Nonnull BlockBreakEvent e, @Nonnull ItemStack item, @Nonnull List<ItemStack> drops) {
                 Block b = e.getBlock();
-                Scheduler.run(() -> {
-                    b.setType(Material.GLASS);
-
-                    if (BlockStorage.getLocationInfo(b.getLocation(), "owner") != null) {
-
-                        NamespacedKey key = new NamespacedKey(FoxyMachines.getInstance(), "chunkloaders");
-
-
-                        Player p = Bukkit.getPlayer(UUID.fromString(BlockStorage.getLocationInfo(b.getLocation(), "owner")));
-
-                        Integer i = p.getPersistentDataContainer().get(key, PersistentDataType.INTEGER) - 1;
-                        p.getPersistentDataContainer().set(key, PersistentDataType.INTEGER, i);
-
-                        b.getChunk().setForceLoaded(false);
-                        BlockStorage.clearBlockInfo(b);
-                    }
-                });
-
                 if (BlockStorage.getLocationInfo(b.getLocation(), "owner") != null) {
                     NamespacedKey key = new NamespacedKey(FoxyMachines.getInstance(), "chunkloaders");
                     Player p = Bukkit.getPlayer(UUID.fromString(BlockStorage.getLocationInfo(b.getLocation(), "owner")));
 
-                    Integer i = p.getPersistentDataContainer().get(key, PersistentDataType.INTEGER) - 1;
+                    int i = p.getPersistentDataContainer().get(key, PersistentDataType.INTEGER) - 1;
                     p.getPersistentDataContainer().set(key, PersistentDataType.INTEGER, i);
 
                     b.getChunk().setForceLoaded(false);
                     BlockStorage.clearBlockInfo(b);
                 }
+
+                Scheduler.run(() -> b.setType(Material.GLASS));
             }
         };
     }

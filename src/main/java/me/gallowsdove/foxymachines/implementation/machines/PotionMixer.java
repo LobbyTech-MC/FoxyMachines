@@ -52,7 +52,7 @@ public class PotionMixer extends SlimefunItem implements EnergyNetComponent {
     public static Map<Block, Integer> progress = new HashMap<>();
 
     public PotionMixer() {
-        super(Items.ITEM_GROUP, Items.POTION_MIXER, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
+        super(Items.MACHINES_ITEM_GROUP, Items.POTION_MIXER, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 SlimefunItems.CARBONADO, SlimefunItems.GOLD_24K, SlimefunItems.CARBONADO,
                 SlimefunItems.ELECTRIC_MOTOR, new ItemStack(Material.BREWING_STAND), SlimefunItems.ELECTRIC_MOTOR,
                 SlimefunItems.GOLD_24K, SlimefunItems.MEDIUM_CAPACITOR, SlimefunItems.GOLD_24K
@@ -402,20 +402,14 @@ public class PotionMixer extends SlimefunItem implements EnergyNetComponent {
                     add("Not usable in Brewing Stand");
                 }};
                 potionMeta.setBasePotionData(new PotionData(PotionType.UNCRAFTABLE, false, false));
-                switch(potion1.getType()){
-                    case POTION:
-                        potionMeta.setDisplayName(ChatColor.AQUA + "混合药水");
-                        break;
-                    case LINGERING_POTION:
+                switch (potion1.getType()) {
+                    case POTION -> potionMeta.setDisplayName(ChatColor.AQUA + "混合药水");
+                    case LINGERING_POTION -> {
                         lore.add(ChatColor.RED + "The time shown is incorrect due to a Minecraft");
                         lore.add(ChatColor.RED + "bug, multiply it by 4 to get the real time.");
                         potionMeta.setDisplayName(ChatColor.AQUA + "混合滞留药水");
-                        break;
-                    case SPLASH_POTION:
-                        potionMeta.setDisplayName(ChatColor.AQUA + "混合喷溅型药水");
-                        break;
-				default:
-					break;
+                    }
+                    case SPLASH_POTION -> potionMeta.setDisplayName(ChatColor.AQUA + "混合喷溅型药水");
                 }
                 potionMeta.setLore(lore);
                 potionMeta.setColor(Color.AQUA);

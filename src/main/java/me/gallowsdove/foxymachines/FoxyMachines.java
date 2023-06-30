@@ -5,6 +5,7 @@ import io.github.mooy1.infinitylib.common.Scheduler;
 import io.github.mooy1.infinitylib.core.AbstractAddon;
 import io.github.mooy1.infinitylib.metrics.bukkit.Metrics;
 import lombok.SneakyThrows;
+import me.gallowsdove.foxymachines.abstracts.AbstractWand;
 import me.gallowsdove.foxymachines.abstracts.CustomBoss;
 import me.gallowsdove.foxymachines.commands.KillallCommand;
 import me.gallowsdove.foxymachines.commands.QuestCommand;
@@ -16,6 +17,7 @@ import me.gallowsdove.foxymachines.listeners.*;
 import me.gallowsdove.foxymachines.tasks.GhostBlockTask;
 import me.gallowsdove.foxymachines.tasks.MobTicker;
 import me.gallowsdove.foxymachines.tasks.QuestTicker;
+import me.gallowsdove.foxymachines.utils.QuestUtils;
 
 import javax.annotation.Nonnull;
 import java.io.File;
@@ -33,20 +35,23 @@ public class FoxyMachines extends AbstractAddon {
     @Override
     @SneakyThrows
     public void enable() {
-
         instance = this;
 
         Events.registerListener(new ChunkLoaderListener());
         Events.registerListener(new BoostedRailListener());
         Events.registerListener(new BerryBushListener());
         Events.registerListener(new ForcefieldListener());
+        Events.registerListener(new GhostBlockListener());
         Events.registerListener(new RemoteControllerListener());
         Events.registerListener(new SacrificialAltarListener());
         Events.registerListener(new SwordListener());
         Events.registerListener(new PoseidonsFishingRodListener());
         Events.registerListener(new ArmorListener());
         Events.registerListener(new BowListener());
-        
+        Events.registerListener(new PositionSelectorListener());
+
+        QuestUtils.init();
+        AbstractWand.init();
         ItemSetup.INSTANCE.init();
         ResearchSetup.INSTANCE.init();
 

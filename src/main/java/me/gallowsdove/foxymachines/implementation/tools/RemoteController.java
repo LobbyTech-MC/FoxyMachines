@@ -24,7 +24,7 @@ public class RemoteController extends SlimefunItem implements NotPlaceable, Rech
     private static final float COST = 50F;
 
     public RemoteController() {
-        super(Items.ITEM_GROUP, Items.REMOTE_CONTROLLER, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
+        super(Items.TOOLS_ITEM_GROUP, Items.REMOTE_CONTROLLER, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 Items.DAMIENIUM, Items.WIRELESS_TRANSMITTER, Items.DAMIENIUM,
                 Items.DAMIENIUM, Items.WIRELESS_TRANSMITTER, Items.DAMIENIUM,
                 Items.DAMIENIUM, Items.WIRELESS_TRANSMITTER, Items.DAMIENIUM
@@ -49,7 +49,7 @@ public class RemoteController extends SlimefunItem implements NotPlaceable, Rech
                     Block b = e.getClickedBlock().get();
                     if (BlockStorage.getLocationInfo(b.getLocation(), "owner") != null && BlockStorage.getLocationInfo(b.getLocation(), "active") != null) {
 
-                        SimpleLocation loc = new SimpleLocation(b.getX(), b.getY(), b.getZ(), b.getWorld().getUID().toString());
+                        SimpleLocation loc = new SimpleLocation(b.getX(), b.getY(), b.getZ(), b.getWorld().getUID().toString(), "forcefield");
 
                         loc.storePersistently(container);
                         itemInInventory.setItemMeta(meta);
@@ -59,7 +59,7 @@ public class RemoteController extends SlimefunItem implements NotPlaceable, Rech
                     }
                 }
             } else {
-                SimpleLocation loc = SimpleLocation.fromPersistentStorage(container);
+                SimpleLocation loc = SimpleLocation.fromPersistentStorage(container, "forcefield");
 
                 if (loc != null) {
                     World world = Bukkit.getWorld(UUID.fromString(loc.getWorldUUID()));
