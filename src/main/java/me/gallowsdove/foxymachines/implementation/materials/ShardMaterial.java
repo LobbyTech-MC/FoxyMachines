@@ -29,11 +29,13 @@ public class ShardMaterial extends SimpleSlimefunItem<ItemDropHandler> {
                 return false;
             }
 
-            if (!QuestUtils.hasActiveQuest(p)) {
-                return true;
-            }
-
             Slimefun.runSync(() -> {
+                if (!QuestUtils.hasActiveQuest(p)) {
+                    p.sendMessage(this.color + "你应该先使用 " + ChatColor.LIGHT_PURPLE + "/foxy quest " + this.color +
+                        "查看你的任务！");
+                    return;
+                }
+
                 if (SacrificialAltarListener.findAltar(item.getLocation().getBlock()) == null) {
                     return;
                 }

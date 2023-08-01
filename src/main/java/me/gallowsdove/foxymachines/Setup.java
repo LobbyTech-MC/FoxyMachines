@@ -6,7 +6,6 @@ import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.api.researches.Research;
 import io.github.thebusybiscuit.slimefun4.core.attributes.Radioactivity;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
-import io.github.thebusybiscuit.slimefun4.implementation.items.armor.LongFallBoots;
 import io.github.thebusybiscuit.slimefun4.implementation.items.armor.SlimefunArmorPiece;
 import io.github.thebusybiscuit.slimefun4.libraries.commons.lang.StringUtils;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
@@ -39,6 +38,9 @@ import me.gallowsdove.foxymachines.implementation.tools.GhostBlockRemover;
 import me.gallowsdove.foxymachines.implementation.tools.PositionSelector;
 import me.gallowsdove.foxymachines.implementation.tools.RemoteController;
 import me.gallowsdove.foxymachines.implementation.tools.SpongeWand;
+import me.gallowsdove.foxymachines.implementation.weapons.CelestialSword;
+import me.gallowsdove.foxymachines.implementation.weapons.CursedSword;
+import me.gallowsdove.foxymachines.implementation.weapons.Elucidator;
 import me.gallowsdove.foxymachines.implementation.weapons.HealingBow;
 import me.gallowsdove.foxymachines.types.FoxyRecipeType;
 import net.guizhanss.guizhanlib.minecraft.helper.MaterialHelper;
@@ -299,42 +301,14 @@ final class ItemSetup {
         new ElectricFireStaff().register(FoxyMachines.getInstance());
         new ElectricFireStaffII().register(FoxyMachines.getInstance());
         new HealingBow().register(FoxyMachines.getInstance());
-        if (customMobs) {
-            new SlimefunItem(Items.WEAPONS_AND_ARMORS_ITEM_GROUP, Items.ACRI_ARCUM, RecipeType.ANCIENT_ALTAR, new ItemStack[]{
-                    Items.EQUANIMOUS_GEM, new ItemStack(Material.BOW), Items.EQUANIMOUS_GEM,
-                    Items.BUCKET_OF_BLOOD, Items.VILE_PUMPKIN, Items.BUCKET_OF_BLOOD,
-                    Items.EQUANIMOUS_GEM, new ItemStack(Material.BOW), Items.EQUANIMOUS_GEM
-                    }).register(FoxyMachines.getInstance());
-        } else {
-            new SlimefunItem(Items.WEAPONS_AND_ARMORS_ITEM_GROUP, Items.ACRI_ARCUM, RecipeType.ANCIENT_ALTAR, new ItemStack[]{
-                    Items.EQUANIMOUS_GEM, Items.DEMONIC_PLATE, Items.EQUANIMOUS_GEM,
-                    Items.BUCKET_OF_BLOOD, new ItemStack(Material.BOW), Items.BUCKET_OF_BLOOD,
-                    Items.EQUANIMOUS_GEM, Items.DEMONIC_PLATE, Items.EQUANIMOUS_GEM
-                    }).register(FoxyMachines.getInstance());
-        }
-        new SlimefunItem(Items.WEAPONS_AND_ARMORS_ITEM_GROUP, Items.CURSED_SWORD, RecipeType.ANCIENT_ALTAR, new ItemStack[] {
-                Items.BLOOD, Items.CURSED_RABBIT_PAW, Items.BLOOD,
-                Items.MAGIC_LUMP_5, new ItemStack(Material.NETHERITE_SWORD), Items.MAGIC_LUMP_5,
-                Items.BLOOD, Items.BLOOD_INFUSED_SKULL, Items.BLOOD
-                }).register(FoxyMachines.getInstance());
-        new SlimefunItem(Items.WEAPONS_AND_ARMORS_ITEM_GROUP, Items.CELESTIAL_SWORD, RecipeType.ANCIENT_ALTAR, new ItemStack[] {
-                Items.MAGIC_LUMP_5, Items.POSEIDONS_BLESSING, Items.MAGIC_LUMP_5,
-                Items.PURE_BONE_DUST, new ItemStack(Material.NETHERITE_SWORD), Items.PURE_BONE_DUST,
-                Items.MAGIC_LUMP_5, Items.POSEIDONS_BLESSING, Items.MAGIC_LUMP_5
-                }).register(FoxyMachines.getInstance());
-        if (customMobs) {
-            new SlimefunItem(Items.WEAPONS_AND_ARMORS_ITEM_GROUP, Items.ELUCIDATOR, RecipeType.ANCIENT_ALTAR, new ItemStack[]{
-                    Items.EQUANIMOUS_GEM, Items.CURSED_SWORD, Items.EQUANIMOUS_GEM,
-                    Items.BUCKET_OF_BLOOD, Items.PIXIE_QUEEN_HEART, Items.BUCKET_OF_BLOOD,
-                    Items.EQUANIMOUS_GEM, Items.CELESTIAL_SWORD, Items.EQUANIMOUS_GEM
-                    }).register(FoxyMachines.getInstance());
-        } else {
-            new SlimefunItem(Items.WEAPONS_AND_ARMORS_ITEM_GROUP, Items.ELUCIDATOR, RecipeType.ANCIENT_ALTAR, new ItemStack[]{
-                    Items.EQUANIMOUS_GEM, Items.CURSED_SWORD, Items.EQUANIMOUS_GEM,
-                    Items.BUCKET_OF_BLOOD, Items.DEMONIC_PLATE, Items.BUCKET_OF_BLOOD,
-                    Items.EQUANIMOUS_GEM, Items.CELESTIAL_SWORD, Items.EQUANIMOUS_GEM
-                    }).register(FoxyMachines.getInstance());
-        }
+        new SlimefunItem(Items.WEAPONS_AND_ARMORS_ITEM_GROUP, Items.ACRI_ARCUM, RecipeType.ANCIENT_ALTAR, new ItemStack[]{
+                Items.EQUANIMOUS_GEM, customMobs ? new ItemStack(Material.BOW) : Items.DEMONIC_PLATE, Items.EQUANIMOUS_GEM,
+                Items.BUCKET_OF_BLOOD, customMobs ? Items.VILE_PUMPKIN : new ItemStack(Material.BOW), Items.BUCKET_OF_BLOOD,
+                Items.EQUANIMOUS_GEM, customMobs ? new ItemStack(Material.BOW) : Items.DEMONIC_PLATE, Items.EQUANIMOUS_GEM
+        }).register(FoxyMachines.getInstance());
+        new CursedSword().register(FoxyMachines.getInstance());
+        new CelestialSword().register(FoxyMachines.getInstance());
+        new Elucidator(customMobs).register(FoxyMachines.getInstance());
         new SlimefunArmorPiece(Items.WEAPONS_AND_ARMORS_ITEM_GROUP, Items.AQUATIC_HELMET, RecipeType.ANCIENT_ALTAR, new ItemStack[]{
                 Items.EQUANIMOUS_GEM, Items.MAGIC_LUMP_5, Items.EQUANIMOUS_GEM,
                 Items.TROPICAL_FISH_SCALE, Items.AQUATIC_HELMET_FRAME, Items.TROPICAL_FISH_SCALE,
@@ -355,7 +329,7 @@ final class ItemSetup {
                 Items.EQUANIMOUS_GEM, Items.MAGIC_LUMP_5, Items.EQUANIMOUS_GEM},
                 new PotionEffect[] { new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 300, 0, false, false, false)})
                 .register(FoxyMachines.getInstance());
-        new LongFallBoots(Items.WEAPONS_AND_ARMORS_ITEM_GROUP, Items.LIGHT_BOOTS, RecipeType.ANCIENT_ALTAR, new ItemStack[]{
+        new SlimefunArmorPiece(Items.WEAPONS_AND_ARMORS_ITEM_GROUP, Items.LIGHT_BOOTS, RecipeType.ANCIENT_ALTAR, new ItemStack[]{
                 Items.EQUANIMOUS_GEM, Items.MAGIC_LUMP_5, Items.EQUANIMOUS_GEM,
                 Items.PARROT_FEATHER, Items.LIGHT_BOOTS_FRAME, Items.PARROT_FEATHER,
                 Items.EQUANIMOUS_GEM, Items.MAGIC_LUMP_5, Items.EQUANIMOUS_GEM},
