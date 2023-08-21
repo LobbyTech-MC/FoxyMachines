@@ -1,13 +1,14 @@
 package me.gallowsdove.foxymachines.implementation.multiblock;
 
+import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockPlaceHandler;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockUseHandler;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import me.gallowsdove.foxymachines.Items;
-import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -39,10 +40,10 @@ public class SacrificialAltarPressurePlate extends SlimefunItem {
             public void onPlayerPlace(@Nonnull BlockPlaceEvent e) {
                 Block b = e.getBlockPlaced();
                 if (isComplete(b)) {
-                    BlockStorage.addBlockInfo(b, "complete", "true");
+                    StorageCacheUtils.setData(b.getLocation(), "complete", "true");
                     e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "献祭祭坛已激活");
                 } else {
-                    BlockStorage.addBlockInfo(b, "complete", "false");
+                    StorageCacheUtils.setData(b.getLocation(), "complete", "false");
                     e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "搭建完成献祭祭坛后点击献祭席来激活献祭祭坛");
                 }
             }
@@ -52,12 +53,12 @@ public class SacrificialAltarPressurePlate extends SlimefunItem {
     private BlockUseHandler onUse() {
         return e -> {
             Block b = e.getClickedBlock().get();
-            if (BlockStorage.getLocationInfo(b.getLocation(), "complete").equals("false")) {
+            if (StorageCacheUtils.getData(b.getLocation(), "complete").equals("false")) {
                 if (isComplete(b)) {
-                    BlockStorage.addBlockInfo(b, "complete", "true");
+                    StorageCacheUtils.setData(b.getLocation(), "complete", "true");
                     e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "献祭祭坛已激活");
                 } else {
-                    BlockStorage.addBlockInfo(b, "complete", "false");
+                    StorageCacheUtils.setData(b.getLocation(), "complete", "false");
                     e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "献祭祭坛未搭建完成");
                 }
             }
@@ -70,8 +71,8 @@ public class SacrificialAltarPressurePlate extends SlimefunItem {
         return new BlockBreakHandler(false, false) {
             @Override
             public void onPlayerBreak(@Nonnull BlockBreakEvent e, @Nonnull ItemStack item, @Nonnull List<ItemStack> drops) {
-                BlockStorage.addBlockInfo(e.getBlock(), "complete", null);
-                BlockStorage.clearBlockInfo(e.getBlock());
+                StorageCacheUtils.removeData(e.getBlock().getLocation(), "complete");
+                Slimefun.getDatabaseManager().getBlockDataController().removeBlock(e.getBlock().getLocation());
                 e.getPlayer().sendMessage(ChatColor.LIGHT_PURPLE + "献祭祭坛已损坏");
             }
         };
@@ -119,11 +120,11 @@ public class SacrificialAltarPressurePlate extends SlimefunItem {
     }
 
     private boolean isAltarPiece(@Nonnull Block b) {
-        if (BlockStorage.getLocationInfo(b.getLocation(), "id") == null) {
+        if (StorageCacheUtils.getData(b.getLocation(), "id") == null) {
             return false;
         }
 
-        return switch (BlockStorage.getLocationInfo(b.getLocation(), "id")) {
+        return switch (StorageCacheUtils.getData(b.getLocation(), "id")) {
             case "SACRIFICIAL_ALTAR_BLACKSTONE_BRICKS", "SACRIFICIAL_ALTAR_BLACKSTONE_BRICK_WALL", "SACRIFICIAL_ALTAR_BLACKSTONE_BRICK_STAIRS", "SACRIFICIAL_ALTAR_SOUL_TORCH" -> true;
             default -> false;
         };

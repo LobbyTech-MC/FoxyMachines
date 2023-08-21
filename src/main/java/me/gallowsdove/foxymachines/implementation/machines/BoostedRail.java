@@ -1,13 +1,14 @@
 package me.gallowsdove.foxymachines.implementation.machines;
 
+import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.Placeable;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockPlaceHandler;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import me.gallowsdove.foxymachines.Items;
-import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
@@ -32,7 +33,7 @@ public class BoostedRail extends SlimefunItem implements Placeable {
             @Override
             @ParametersAreNonnullByDefault
             public void onPlayerBreak(BlockBreakEvent e, ItemStack item, List<ItemStack> drops) {
-                BlockStorage.clearBlockInfo(e.getBlock());
+                Slimefun.getDatabaseManager().getBlockDataController().removeBlock(e.getBlock().getLocation());
             }
         };
     }
@@ -42,7 +43,7 @@ public class BoostedRail extends SlimefunItem implements Placeable {
         return new BlockPlaceHandler(false) {
             @Override
             public void onPlayerPlace(@Nonnull BlockPlaceEvent e) {
-                BlockStorage.addBlockInfo(e.getBlock(), "boosted", "true");
+                StorageCacheUtils.setData(e.getBlock().getLocation(), "boosted", "true");
             }
         };
     }

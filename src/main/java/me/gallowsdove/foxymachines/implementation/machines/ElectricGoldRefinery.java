@@ -1,5 +1,6 @@
 package me.gallowsdove.foxymachines.implementation.machines;
 
+import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
@@ -19,7 +20,6 @@ import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu.AdvancedMenu
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ClickAction;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineRecipe;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
-import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.inventory.DirtyChestMenu;
@@ -71,18 +71,18 @@ public class ElectricGoldRefinery extends SlimefunItem implements EnergyNetCompo
                 for (int i = 0; i < 12; i++) {
                     final int j = i;
                     menu.addMenuClickHandler(GOLD_INDEXES[j], (p, slot, item, action) -> {
-                        BlockStorage.addBlockInfo(b, "gold_recipe", Integer.toString(j));
+                        StorageCacheUtils.setData(b.getLocation(), "gold_recipe", Integer.toString(j));
                         newInstance(menu, b);
                         return false;
                     });
                 }
 
-                if (!BlockStorage.hasBlockInfo(b) ||
-                        BlockStorage.getLocationInfo(b.getLocation(), "gold_recipe") == null ||
-                        BlockStorage.getLocationInfo(b.getLocation(), "gold_recipe").equals("11")) {
+                if (!StorageCacheUtils.hasBlock(b.getLocation()) ||
+                        StorageCacheUtils.getData(b.getLocation(), "gold_recipe") == null ||
+                        StorageCacheUtils.getData(b.getLocation(), "gold_recipe").equals("11")) {
                     menu.replaceExistingItem(32, new CustomItemStack(Material.RED_STAINED_GLASS_PANE, "&6当前配方: &c无", "", "&e> 点击左侧物品更改配方"));
                 } else {
-                    switch (BlockStorage.getLocationInfo(b.getLocation(), "gold_recipe")) {
+                    switch (StorageCacheUtils.getData(b.getLocation(), "gold_recipe")) {
                         case "0" -> menu.replaceExistingItem(32, new CustomItemStack(Material.GOLD_INGOT, "&6当前配方: &f金锭 &7(4 克拉)", "", "&e> 点击左侧物品更改配方"));
                         case "1" -> menu.replaceExistingItem(32, new CustomItemStack(Material.GOLD_INGOT, "&6当前配方: &f金锭 &7(6 克拉)", "", "&e> 点击左侧物品更改配方"));
                         case "2" -> menu.replaceExistingItem(32, new CustomItemStack(Material.GOLD_INGOT, "&6当前配方: &f金锭 &7(8 克拉)", "", "&e> 点击左侧物品更改配方"));
@@ -187,7 +187,7 @@ public class ElectricGoldRefinery extends SlimefunItem implements EnergyNetCompo
             @Override
             public void onPlayerBreak(@Nonnull BlockBreakEvent e, @Nonnull ItemStack item, @Nonnull List<ItemStack> drops) {
                 Block b = e.getBlock();
-                BlockMenu inv = BlockStorage.getInventory(b);
+                BlockMenu inv = StorageCacheUtils.getMenu(b.getLocation());
 
                 if (inv != null) {
                     inv.dropItems(b.getLocation(), getOutputSlots());
@@ -214,7 +214,7 @@ public class ElectricGoldRefinery extends SlimefunItem implements EnergyNetCompo
     }
 
     protected void tick(@Nonnull Block b) {
-        BlockMenu inv = BlockStorage.getInventory(b);
+        BlockMenu inv = StorageCacheUtils.getMenu(b.getLocation());
 
         if (isProcessing(b)) {
             int timeleft = progress.get(b);
@@ -243,7 +243,7 @@ public class ElectricGoldRefinery extends SlimefunItem implements EnergyNetCompo
             }
         }
         else {
-            MachineRecipe next = findNextRecipe(inv, BlockStorage.getLocationInfo(b.getLocation(), "gold_recipe"));
+            MachineRecipe next = findNextRecipe(inv, StorageCacheUtils.getData(b.getLocation(), "gold_recipe"));
 
             if (next != null) {
                 processing.put(b, next);

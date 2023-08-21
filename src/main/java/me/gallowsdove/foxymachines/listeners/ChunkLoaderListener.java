@@ -1,11 +1,11 @@
 package me.gallowsdove.foxymachines.listeners;
 
+import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.config.Config;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import me.gallowsdove.foxymachines.FoxyMachines;
 import me.gallowsdove.foxymachines.Items;
-import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -22,7 +22,7 @@ import javax.annotation.Nonnull;
 public class ChunkLoaderListener implements Listener {
     @EventHandler(ignoreCancelled = true)
     public void onChunkLoaderPlace(@Nonnull BlockPlaceEvent e) {
-        if(e.getBlock().getType() != Material.BEACON) {
+        if (e.getBlock().getType() != Material.BEACON) {
             return;
         }
 
@@ -36,7 +36,7 @@ public class ChunkLoaderListener implements Listener {
         Block b = e.getBlockPlaced();
         if (b.getChunk().isForceLoaded()) {
             e.setCancelled(true);
-            p.sendMessage(ChatColor.LIGHT_PURPLE + "该区块已经处于强制加载状态，无法放置区块加载器!");
+            p.sendMessage(ChatColor.LIGHT_PURPLE + "该区块已经处于强制加载状态，无法放置区块加载器！");
             return;
         }
 
@@ -47,7 +47,7 @@ public class ChunkLoaderListener implements Listener {
         if (!p.hasPermission("foxymachines.bypass-chunk-loader-limit")) {
             int max = cfg.getInt("max-chunk-loaders");
             if(max != 0 && max < i) {
-                p.sendMessage(ChatColor.LIGHT_PURPLE + "已达到区块加载器最大数量限制: " + max);
+                p.sendMessage(ChatColor.LIGHT_PURPLE + "已达到区块加载器最大数量限制：" + max);
                 e.setCancelled(true);
                 return;
             }
@@ -55,13 +55,14 @@ public class ChunkLoaderListener implements Listener {
         int currentComplexity = Slimefun.getGPSNetwork().getNetworkComplexity(p.getUniqueId());
         int requiredComplexity = cfg.getInt("gps-complexity-per-loader") * i;
         if (currentComplexity < requiredComplexity) {
-            p.sendMessage(ChatColor.LIGHT_PURPLE + "你的GPS网络复杂度 " + currentComplexity + "/" + requiredComplexity + " 不满足区块加载器的放置条件");
+            p.sendMessage(ChatColor.LIGHT_PURPLE + "你的GPS网络复杂度 " + currentComplexity + "/" + requiredComplexity + " " +
+                "不满足区块加载器的放置条件。");
             e.setCancelled(true);
             return;
         }
 
         p.getPersistentDataContainer().set(key, PersistentDataType.INTEGER, i);
         b.getChunk().setForceLoaded(true);
-        BlockStorage.addBlockInfo(b, "owner", p.getUniqueId().toString());
+        StorageCacheUtils.setData(b.getLocation(), "owner", p.getUniqueId().toString());
     }
 }
