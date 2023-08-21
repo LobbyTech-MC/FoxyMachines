@@ -8,19 +8,17 @@ FoxyMachines 向 [Slimefun](https://github.com/Slimefun/Slimefun4) 添加了许�
 
 汉化作者推荐: 配合 [MobCapturer](https://github.com/ybw0014/MobCapturer) 可轻松将生物捕捉至献祭祭坛。
  
-## 下载 FoxyMachines
+## 下载
 
-**自动更新**: 汉化版构建#3及以后版本包含*自动更新*功能，默认开启。
-
-你可以在这里下载FoxyMachines: [下载FoxyMachines](https://builds.guizhanss.net/ybw0014/FoxyMachines-CN/master)
+你可以在这里下载FoxyMachines: [下载FoxyMachines](https://builds.guizhanss.net/SlimefunGuguProject/FoxyMachines/master)
 
 <p align="center">
-  <a href="https://github.com/ybw0014/FoxyMachines-CN/actions/workflows/maven.yml">
-    <img src="https://github.com/ybw0014/FoxyMachines-CN/actions/workflows/maven.yml/badge.svg" alt="Java CI"/>
+  <a href="https://github.com/SlimefunGuguProject/FoxyMachines/actions/workflows/maven.yml">
+    <img src="https://github.com/SlimefunGuguProject/FoxyMachines/actions/workflows/maven.yml/badge.svg" alt="Java CI"/>
   </a>
 
-  <a href="https://builds.guizhanss.net/ybw0014/FoxyMachines-CN/master">
-    <img src="https://builds.guizhanss.net/f/ybw0014/FoxyMachines-CN/master/badge.svg" alt="Build status"/>
+  <a href="https://builds.guizhanss.net/SlimefunGuguProject/FoxyMachines/master">
+    <img src="https://builds.guizhanss.net/f/SlimefunGuguProject/FoxyMachines/master/badge.svg" alt="Build status"/>
   </a>
 </p>
 
