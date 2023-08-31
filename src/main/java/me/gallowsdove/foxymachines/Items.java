@@ -26,7 +26,7 @@ public final class Items{
     // Item groups
     public static final NestedItemGroup MAIN_ITEM_GROUP = new NestedItemGroup(
             new NamespacedKey(FoxyMachines.getInstance(), "foxy_machines"),
-            new CustomItemStack(Material.SHEARS, "&4神秘科技(FoxyMachines)")
+            new CustomItemStack(Material.SHEARS, "&4神秘科技")
     );
 
     public static final SubItemGroup MATERIALS_ITEM_GROUP = new SubItemGroup(
