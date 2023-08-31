@@ -1,5 +1,6 @@
 package me.gallowsdove.foxymachines.implementation.multiblock;
 
+import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
@@ -120,11 +121,11 @@ public class SacrificialAltarPressurePlate extends SlimefunItem {
     }
 
     private boolean isAltarPiece(@Nonnull Block b) {
-        if (StorageCacheUtils.getData(b.getLocation(), "id") == null) {
+        SlimefunBlockData blockData = StorageCacheUtils.getBlock(b.getLocation());
+        if (blockData == null) {
             return false;
         }
-
-        return switch (StorageCacheUtils.getData(b.getLocation(), "id")) {
+        return switch (blockData.getSfId()) {
             case "SACRIFICIAL_ALTAR_BLACKSTONE_BRICKS", "SACRIFICIAL_ALTAR_BLACKSTONE_BRICK_WALL", "SACRIFICIAL_ALTAR_BLACKSTONE_BRICK_STAIRS", "SACRIFICIAL_ALTAR_SOUL_TORCH" -> true;
             default -> false;
         };

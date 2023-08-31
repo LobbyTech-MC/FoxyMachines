@@ -1,5 +1,6 @@
 package me.gallowsdove.foxymachines.listeners;
 
+import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import me.gallowsdove.foxymachines.Items;
@@ -86,8 +87,9 @@ public class SacrificialAltarListener implements Listener {
                 for (int z = -1; z <= 1; z++) {
                     Block block = b.getRelative(x, y, z);
 
-                    if (block.getType() == Material.POLISHED_BLACKSTONE_PRESSURE_PLATE && StorageCacheUtils.getData(block.getLocation(), "id") != null &&
-                            StorageCacheUtils.getData(block.getLocation(), "id").equals("SACRIFICIAL_ALTAR_BLACKSTONE_PRESSURE_PLATE")) {
+                    SlimefunBlockData blockData = StorageCacheUtils.getBlock(block.getLocation());
+                    if (block.getType() == Material.POLISHED_BLACKSTONE_PRESSURE_PLATE && blockData != null &&
+                            blockData.getSfId().equals("SACRIFICIAL_ALTAR_BLACKSTONE_PRESSURE_PLATE")) {
                         return block;
                     }
                 }
