@@ -54,12 +54,11 @@ public class ChunkLoader extends SlimefunItem {
                     p.getPersistentDataContainer().set(key, PersistentDataType.INTEGER, i);
 
                     Slimefun.getDatabaseManager().getBlockDataController().removeBlock(b.getLocation());
+
+                    Scheduler.run(() -> b.setType(Material.GLASS));
                 }
 
-                Scheduler.run(() -> {
-                    b.setType(Material.GLASS);
-                    b.getChunk().setForceLoaded(false);
-                });
+                Scheduler.run(() -> b.getChunk().setForceLoaded(false));
             }
         };
     }
