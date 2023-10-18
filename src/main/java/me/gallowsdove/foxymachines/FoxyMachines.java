@@ -7,6 +7,7 @@ import io.github.mooy1.infinitylib.metrics.bukkit.Metrics;
 import lombok.SneakyThrows;
 import me.gallowsdove.foxymachines.abstracts.AbstractWand;
 import me.gallowsdove.foxymachines.abstracts.CustomBoss;
+import me.gallowsdove.foxymachines.commands.ChunkLoaderLimitCommand;
 import me.gallowsdove.foxymachines.commands.KillallCommand;
 import me.gallowsdove.foxymachines.commands.QuestCommand;
 import me.gallowsdove.foxymachines.commands.SacrificialAltarCommand;
@@ -79,8 +80,12 @@ public class FoxyMachines extends AbstractAddon {
 
         new Metrics(this, 10568);
 
-        getAddonCommand().addSub(new KillallCommand()).addSub((new QuestCommand())).
-                addSub(new SacrificialAltarCommand()).addSub(new SummonCommand());
+        getAddonCommand()
+            .addSub(new KillallCommand())
+            .addSub(new QuestCommand())
+            .addSub(new SacrificialAltarCommand())
+            .addSub(new SummonCommand())
+            .addSub(new ChunkLoaderLimitCommand());
     }
 
     @SneakyThrows
