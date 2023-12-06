@@ -6,6 +6,7 @@ import io.github.thebusybiscuit.slimefun4.api.events.PlayerRightClickEvent;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
+import io.github.thebusybiscuit.slimefun4.core.handlers.BlockPlaceHandler;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockUseHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
@@ -17,6 +18,7 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 
@@ -36,7 +38,7 @@ public class ChunkLoader extends SlimefunItem {
 
     @Override
     public void preRegister() {
-        addItemHandler(onBreak(), onBlockUse());
+        addItemHandler(onBreak(), onBlockUse(), onPlace());
     }
 
     @Nonnull
@@ -66,6 +68,16 @@ public class ChunkLoader extends SlimefunItem {
     @Nonnull
     private BlockUseHandler onBlockUse() {
         return PlayerRightClickEvent::cancel;
+    }
+
+    @Nonnull
+    private BlockPlaceHandler onPlace() {
+        return new BlockPlaceHandler(false) {
+            @Override
+            public void onPlayerPlace(@Nonnull BlockPlaceEvent e) {
+                StorageCacheUtils.setData(e.getBlock().getLocation(), "owner", e.getPlayer().getUniqueId().toString());
+            }
+        };
     }
 
 }

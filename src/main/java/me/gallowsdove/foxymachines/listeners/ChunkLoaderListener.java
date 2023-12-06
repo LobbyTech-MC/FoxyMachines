@@ -1,6 +1,5 @@
 package me.gallowsdove.foxymachines.listeners;
 
-import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.config.Config;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
@@ -63,6 +62,5 @@ public class ChunkLoaderListener implements Listener {
 
         p.getPersistentDataContainer().set(key, PersistentDataType.INTEGER, i);
         b.getChunk().setForceLoaded(true);
-        StorageCacheUtils.setData(b.getLocation(), "owner", p.getUniqueId().toString());
     }
 }
