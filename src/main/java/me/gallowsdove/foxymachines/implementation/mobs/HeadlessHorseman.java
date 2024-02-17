@@ -51,6 +51,7 @@ public class HeadlessHorseman extends CustomBoss {
 
         CustomMob mob = CustomMob.getByID("SKELETON_HORSE");
         SkeletonHorse horse = (SkeletonHorse) mob.spawn(spawned.getLocation());
+        horse.setTamed(true);
         horse.addPassenger(spawned);
 
         EntityEquipment equipment = spawned.getEquipment();
