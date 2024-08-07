@@ -106,3 +106,11 @@ quest-mobs:
   - ZOMBIE
   - ZOMBIFIED_PIGLIN
   - FOX
+
+# 不可破坏符文黑名单
+# 你可以禁止不可破坏符文对某些附属中的部分物品生效
+unbreakable-rune-blacklist:
+  InfinityExpansion:
+    - BASIC_STRAINER
+    - ADVANCED_STRAINER
+    - REINFORCED_STRAINER

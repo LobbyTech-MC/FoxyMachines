@@ -10,6 +10,7 @@ import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
 import me.gallowsdove.foxymachines.FoxyMachines;
 import me.gallowsdove.foxymachines.Items;
+import me.gallowsdove.foxymachines.utils.AuraSkillsCompat;
 import me.gallowsdove.foxymachines.utils.SimpleLocation;
 import me.gallowsdove.foxymachines.utils.Utils;
 import net.guizhanss.guizhanlib.minecraft.helper.MaterialHelper;
@@ -129,7 +130,12 @@ public abstract class AbstractWand extends SlimefunItem implements NotPlaceable,
                     if (removeItemCharge(e.getItem(), getCostPerBlock() * locs.size())) {
                         inventory.removeItem(blocks);
                         for (Location loc : locs) {
-                            Bukkit.getScheduler().runTask(FoxyMachines.getInstance(), () -> loc.getBlock().setType(material));
+                            Bukkit.getScheduler().runTask(FoxyMachines.getInstance(), () -> {
+                                loc.getBlock().setType(material);
+                                if (Utils.isAuraSkillsLoaded()) {
+                                    AuraSkillsCompat.addPlacedBlock(loc.getBlock());
+                                }
+                            });
                         }
                     } else {
                         player.sendMessage(ChatColor.RED + "物品充能不足!");
