@@ -44,7 +44,7 @@ public class KillallCommand extends SubCommand {
 
         CustomBoss.removeBossBars();
 
-        player.sendMessage("Killed %s Entities".formatted(count));
+        player.sendMessage("已移除 %s 个实体".formatted(count));
     }
 
     @Override

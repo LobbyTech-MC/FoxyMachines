@@ -160,7 +160,7 @@ public class UnbreakableRune extends SimpleSlimefunItem<ItemDropHandler> {
         final String id = slimefunItem.getId();
         final String addon = slimefunItem.getAddon().getName();
         if (BLACKLIST.containsKey(addon) && BLACKLIST.get(addon).contains(id)) {
-            player.sendMessage(ChatColor.LIGHT_PURPLE + "You can't make this item unbreakable!");
+            player.sendMessage(ChatColor.LIGHT_PURPLE + "该物品无法变成不可破坏");
             return true;
         }
         return false;
