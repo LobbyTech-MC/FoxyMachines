@@ -1,6 +1,7 @@
 package me.gallowsdove.foxymachines.listeners;
 
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
+import me.gallowsdove.foxymachines.implementation.machines.BoostedRail;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Minecart;
@@ -19,12 +20,16 @@ public class BoostedRailListener implements Listener {
         if (e.getVehicle() instanceof Minecart cart) {
             Block b = cart.getLocation().getBlock();
             if (RAILS.contains(b.getType())) {
-                if (StorageCacheUtils.getData(b.getLocation(), "boosted") != null) {
+                if (isBoostedRail(b)) {
                     cart.setMaxSpeed(1d);
                 } else {
                     cart.setMaxSpeed(.4d);
                 }
             }
         }
+    }
+
+    private boolean isBoostedRail(Block b) {
+        return StorageCacheUtils.getSfItem(b.getLocation()) instanceof BoostedRail;
     }
 }
