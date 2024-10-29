@@ -33,6 +33,15 @@ max-fill-wand-blocks: 4096
 # - 材料完全遮光
 # - 材料不处于黑名单中
 # 当以上的条件完全满足时，则允许该材料的使用
+# max-sponge-wand-blocks: default: 16384
+# The max volume that can be cleared at once
+#
+# quest-mobs
+# All mob types that can be required for a quest, for a full list of them go to: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/entity/EntityType.html
+#
+# unbreakable-rune-blacklist
+# Any items from addons to blacklist from being usable with the unbreakable rune
+# for ex, by default the strainers from InfinityExpansion are disabled as they do not respect the unbreakable setting
 
 # 填充棒白名单
 fill-wand-white-list:
@@ -106,3 +115,8 @@ quest-mobs:
   - ZOMBIE
   - ZOMBIFIED_PIGLIN
   - FOX
+unbreakable-rune-blacklist:
+  InfinityExpansion:
+    - BASIC_STRAINER
+    - ADVANCED_STRAINER
+    - REINFORCED_STRAINER

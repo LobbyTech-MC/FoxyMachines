@@ -24,48 +24,48 @@ import org.bukkit.inventory.meta.ItemMeta;
 public final class Items{
 
     // Item groups
-    public static NestedItemGroup MAIN_ITEM_GROUP = new NestedItemGroup(
+    public static final NestedItemGroup MAIN_ITEM_GROUP = new NestedItemGroup(
             new NamespacedKey(FoxyMachines.getInstance(), "foxy_machines"),
             new CustomItemStack(Material.SHEARS, "&4神秘科技")
     );
 
-    public static SubItemGroup MATERIALS_ITEM_GROUP = new SubItemGroup(
+    public static final SubItemGroup MATERIALS_ITEM_GROUP = new SubItemGroup(
             new NamespacedKey(FoxyMachines.getInstance(), "materials"),
             MAIN_ITEM_GROUP,
             new CustomItemStack(Material.GOLD_INGOT, "&b材料")
     );
 
-    public static SubItemGroup MACHINES_ITEM_GROUP = new SubItemGroup(
+    public static final SubItemGroup MACHINES_ITEM_GROUP = new SubItemGroup(
             new NamespacedKey(FoxyMachines.getInstance(), "machines"),
             MAIN_ITEM_GROUP,
             new CustomItemStack(Material.BEACON, "&a机器")
     );
 
-    public static SubItemGroup TOOLS_ITEM_GROUP = new SubItemGroup(
+    public static final SubItemGroup TOOLS_ITEM_GROUP = new SubItemGroup(
             new NamespacedKey(FoxyMachines.getInstance(), "tools"),
             MAIN_ITEM_GROUP,
             new CustomItemStack(Material.BLAZE_ROD, "&e工具")
     );
 
-    public static SubItemGroup WEAPONS_AND_ARMORS_ITEM_GROUP = new SubItemGroup(
+    public static final SubItemGroup WEAPONS_AND_ARMORS_ITEM_GROUP = new SubItemGroup(
             new NamespacedKey(FoxyMachines.getInstance(), "weapons_and_armors"),
             MAIN_ITEM_GROUP,
             new CustomItemStack(Material.NETHERITE_SWORD, "&a武器与护甲")
     );
 
-    public static SubItemGroup ALTAR_ITEM_GROUP = new SubItemGroup(
+    public static final SubItemGroup ALTAR_ITEM_GROUP = new SubItemGroup(
         new NamespacedKey(FoxyMachines.getInstance(), "sacrificial_altars"),
         MAIN_ITEM_GROUP,
         new CustomItemStack(Material.POLISHED_BLACKSTONE_BRICKS, "&4献祭祭坛")
     );
 
-    public static SubItemGroup BOSSES_ITEM_GROUP = new SubItemGroup(
+    public static final SubItemGroup BOSSES_ITEM_GROUP = new SubItemGroup(
         new NamespacedKey(FoxyMachines.getInstance(), "bosses"),
         MAIN_ITEM_GROUP,
         new CustomItemStack(Material.DRAGON_HEAD, "&cBoss")
     );
 
-    public static SubItemGroup GHOST_BLOCKS_ITEM_GROUP = new SubItemGroup(
+    public static final SubItemGroup GHOST_BLOCKS_ITEM_GROUP = new SubItemGroup(
             new NamespacedKey(FoxyMachines.getInstance(), "ghost_blocks"),
             MAIN_ITEM_GROUP,
             new CustomItemStack(Material.GLASS, "&5幽灵方块")
@@ -443,6 +443,7 @@ public final class Items{
             Material.NETHERITE_SWORD,
             "&c诅咒之剑",
             "&7生命偷取 I",
+            "&7护甲穿透 I",
             "",
             "&7迷惑敌人,增加伤害",
             "&7有可能会对攻击者产生负面影响"
@@ -453,8 +454,7 @@ public final class Items{
             Material.NETHERITE_SWORD,
             "&e天界之剑",
             "&7神圣重击 II",
-            "",
-            "&7无视 20% 抗性."
+            "&7护甲穿透 V"
     );
 
     public static final SlimefunItemStack ELUCIDATOR = new SlimefunItemStack(
@@ -463,6 +463,7 @@ public final class Items{
             "&b阐释者",
             "&7伤害 III",
             "&7生命偷取 II",
+            "&7护甲穿透 II",
             "&7过量治疗"
     );
     static {

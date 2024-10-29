@@ -4,13 +4,16 @@ import io.github.mooy1.infinitylib.common.Events;
 import io.github.mooy1.infinitylib.common.Scheduler;
 import io.github.mooy1.infinitylib.core.AbstractAddon;
 import io.github.mooy1.infinitylib.metrics.bukkit.Metrics;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.updater.BlobBuildUpdater;
 import lombok.SneakyThrows;
 import me.gallowsdove.foxymachines.abstracts.AbstractWand;
 import me.gallowsdove.foxymachines.abstracts.CustomBoss;
 import me.gallowsdove.foxymachines.commands.KillallCommand;
+import me.gallowsdove.foxymachines.commands.ListallCommand;
 import me.gallowsdove.foxymachines.commands.QuestCommand;
 import me.gallowsdove.foxymachines.commands.SacrificialAltarCommand;
 import me.gallowsdove.foxymachines.commands.SummonCommand;
+import me.gallowsdove.foxymachines.implementation.consumables.UnbreakableRune;
 import me.gallowsdove.foxymachines.implementation.machines.ForcefieldDome;
 import me.gallowsdove.foxymachines.implementation.tools.BerryBushTrimmer;
 import me.gallowsdove.foxymachines.listeners.*;
@@ -50,6 +53,7 @@ public class FoxyMachines extends AbstractAddon {
             GuizhanUpdater.start(this, getFile(), "ybw0014", "FoxyMachines", "master");
         }
 
+        Events.registerListener(new ChunkLoadListener());
         Events.registerListener(new ChunkLoaderListener());
         Events.registerListener(new BoostedRailListener());
         Events.registerListener(new BerryBushListener());
@@ -65,6 +69,7 @@ public class FoxyMachines extends AbstractAddon {
 
         QuestUtils.init();
         AbstractWand.init();
+        UnbreakableRune.init();
         ItemSetup.INSTANCE.init();
         ResearchSetup.INSTANCE.init();
 
@@ -91,7 +96,12 @@ public class FoxyMachines extends AbstractAddon {
         new Metrics(this, 10568);
 
         getAddonCommand().addSub(new KillallCommand()).addSub((new QuestCommand())).
-                addSub(new SacrificialAltarCommand()).addSub(new SummonCommand());
+                addSub(new SacrificialAltarCommand()).addSub(new SummonCommand()).addSub(new ListallCommand());
+
+        if (getConfig().getBoolean("auto-update") && getDescription().getVersion().startsWith("Dev - ")) {
+            BlobBuildUpdater updater = new BlobBuildUpdater(this, this.getFile(), "FoxyMachines", "Dev");
+            updater.start();
+        }
     }
 
     @SneakyThrows

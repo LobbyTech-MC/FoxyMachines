@@ -43,7 +43,7 @@
     </pluginRepositories>
 
     <build>
-        <finalName>[Slimefun]${project.name}-${project.version}</finalName>
+        <finalName>[粘液科技][独家]${project.name}-${project.version}</finalName>
         <defaultGoal>clean package</defaultGoal>
         <sourceDirectory>${basedir}/src/main/java</sourceDirectory>
 
@@ -117,7 +117,14 @@
         <dependency>
             <groupId>com.github.Slimefun</groupId>
             <artifactId>Slimefun4</artifactId>
-            <version>RC-36</version>
+            <version>RC-37</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>dev.aurelium</groupId>
+            <artifactId>auraskills-api-bukkit</artifactId>
+            <version>2.0.0</version>
             <scope>provided</scope>
         </dependency>
 

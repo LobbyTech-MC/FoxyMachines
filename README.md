@@ -2,7 +2,8 @@
 
 FoxyMachines 向 [Slimefun](https://github.com/Slimefun/Slimefun4) 添加了许多的机器与工具。本附属由 GallowsDove 热情制作。
 
-**本附属需要 Java 16 才能运行!**
+### [Download](https://blob.build/project/FoxyMachines)
+[![Build Status](https://img.shields.io/badge/build-latest-brightgreen.svg)](https://blob.build/project/FoxyMachines)
 
 **你可以在 items.yml 中禁用任何你不想要的物品**
 
