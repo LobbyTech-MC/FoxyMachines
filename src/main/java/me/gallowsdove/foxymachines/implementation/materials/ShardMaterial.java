@@ -31,7 +31,8 @@ public class ShardMaterial extends SimpleSlimefunItem<ItemDropHandler> {
 
             Slimefun.runSync(() -> {
                 if (!QuestUtils.hasActiveQuest(p)) {
-                    p.sendMessage(this.color + "You should check your quest with " + ChatColor.LIGHT_PURPLE + "/foxy quest " + this.color + "first!");
+                    p.sendMessage(this.color + "你应该先使用 " + ChatColor.LIGHT_PURPLE + "/foxy quest " + this.color +
+                        "查看你的任务！");
                     return;
                 }
 

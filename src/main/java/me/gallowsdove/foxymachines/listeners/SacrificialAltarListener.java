@@ -1,8 +1,9 @@
 package me.gallowsdove.foxymachines.listeners;
 
+import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
+import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import me.gallowsdove.foxymachines.Items;
-import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
@@ -74,7 +75,7 @@ public class SacrificialAltarListener implements Listener {
 
     @EventHandler(ignoreCancelled = true)
     private void onWaterTorchDestroy(BlockFromToEvent e) {
-        if (e.getToBlock().getType() == Material.SOUL_TORCH && BlockStorage.hasBlockInfo(e.getToBlock())) {
+        if (e.getToBlock().getType() == Material.SOUL_TORCH && StorageCacheUtils.hasBlock(e.getToBlock().getLocation())) {
             e.setCancelled(true);
         }
     }
@@ -86,8 +87,9 @@ public class SacrificialAltarListener implements Listener {
                 for (int z = -1; z <= 1; z++) {
                     Block block = b.getRelative(x, y, z);
 
-                    if (block.getType() == Material.POLISHED_BLACKSTONE_PRESSURE_PLATE && BlockStorage.getLocationInfo(block.getLocation(), "id") != null &&
-                            BlockStorage.getLocationInfo(block.getLocation(), "id").equals("SACRIFICIAL_ALTAR_BLACKSTONE_PRESSURE_PLATE")) {
+                    SlimefunBlockData blockData = StorageCacheUtils.getBlock(block.getLocation());
+                    if (block.getType() == Material.POLISHED_BLACKSTONE_PRESSURE_PLATE && blockData != null &&
+                            blockData.getSfId().equals("SACRIFICIAL_ALTAR_BLACKSTONE_PRESSURE_PLATE")) {
                         return block;
                     }
                 }

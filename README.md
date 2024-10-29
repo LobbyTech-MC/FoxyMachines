@@ -2,28 +2,15 @@
 
 FoxyMachines 向 [Slimefun](https://github.com/Slimefun/Slimefun4) 添加了许多的机器与工具。本附属由 GallowsDove 热情制作。
 
-### [Download](https://blob.build/project/FoxyMachines)
-[![Build Status](https://img.shields.io/badge/build-latest-brightgreen.svg)](https://blob.build/project/FoxyMachines)
+**本附属需要 Java 16 才能运行!**
 
 **你可以在 items.yml 中禁用任何你不想要的物品**
 
 汉化作者推荐: 配合 [MobCapturer](https://github.com/ybw0014/MobCapturer) 可轻松将生物捕捉至献祭祭坛。
  
-## 下载 FoxyMachines
+## 下载
 
-**自动更新**: 汉化版构建#3及以后版本包含*自动更新*功能，默认开启。
-
-你可以在这里下载FoxyMachines: [下载FoxyMachines](https://builds.guizhanss.net/ybw0014/FoxyMachines-CN/master)
-
-<p align="center">
-  <a href="https://github.com/ybw0014/FoxyMachines-CN/actions/workflows/maven.yml">
-    <img src="https://github.com/ybw0014/FoxyMachines-CN/actions/workflows/maven.yml/badge.svg" alt="Java CI"/>
-  </a>
-
-  <a href="https://builds.guizhanss.net/ybw0014/FoxyMachines-CN/master">
-    <img src="https://builds.guizhanss.net/f/ybw0014/FoxyMachines-CN/master/badge.svg" alt="Build status"/>
-  </a>
-</p>
+[![Build status](https://builds.guizhanss.com/api/badge/SlimefunGuguProject/FoxyMachines/master/latest)](https://builds.guizhanss.com/SlimefunGuguProject/FoxyMachines/master)
 
 ## 首领 (Boss)
 

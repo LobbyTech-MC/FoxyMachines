@@ -10,13 +10,13 @@ import java.util.List;
 
 public class ListallCommand extends SubCommand {
     public ListallCommand() {
-        super("listall", "Lists all Custom Mobs from FoxyMachines", "foxymachines.admin");
+        super("listall", "列出所有 FoxyMachines 生成的生物", "foxymachines.admin");
     }
 
     @Override
     protected void execute(@Nonnull CommandSender sender, @Nonnull String[] args) {
         if (args.length != 0) {
-            sender.sendMessage(ChatColor.LIGHT_PURPLE + "Usage: /foxy listall");
+            sender.sendMessage(ChatColor.LIGHT_PURPLE + "用法: /foxy listall");
             return;
         }
 

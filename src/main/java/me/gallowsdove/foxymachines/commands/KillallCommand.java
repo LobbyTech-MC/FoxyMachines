@@ -17,7 +17,7 @@ import java.util.UUID;
 
 public class KillallCommand extends SubCommand {
     public KillallCommand() {
-        super("killall", "击杀你所在世界神秘科技召唤的所有自定义生物", "foxymachines.admin");
+        super("killall", "击杀你所在世界所有神秘科技生物", "foxymachines.admin");
     }
 
     @Override
@@ -44,7 +44,7 @@ public class KillallCommand extends SubCommand {
 
         CustomBoss.removeBossBars();
 
-        player.sendMessage("Killed %s Entities".formatted(count));
+        player.sendMessage("已移除 %s 个实体".formatted(count));
     }
 
     @Override

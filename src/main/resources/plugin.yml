@@ -6,7 +6,7 @@ description: Adds tools, machines, items, armor, weapons, bosses and more!
 website: https://github.com/GallowsDove/FoxyMachines
 
 depend: [Slimefun]
-softdepend: [AuraSkills, GuizhanLibPlugin]
+softdepend: [GuizhanLibPlugin, AuraSkills]
 version: ${project.version}
 api-version: 1.16
 

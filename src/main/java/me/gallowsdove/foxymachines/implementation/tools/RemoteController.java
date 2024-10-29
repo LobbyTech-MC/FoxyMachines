@@ -1,5 +1,6 @@
 package me.gallowsdove.foxymachines.implementation.tools;
 
+import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.NotPlaceable;
@@ -8,7 +9,6 @@ import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
 import me.gallowsdove.foxymachines.Items;
 import me.gallowsdove.foxymachines.implementation.machines.ForcefieldDome;
 import me.gallowsdove.foxymachines.utils.SimpleLocation;
-import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
@@ -47,7 +47,7 @@ public class RemoteController extends SlimefunItem implements NotPlaceable, Rech
             if (e.getPlayer().isSneaking()) {
                 if (e.getClickedBlock().isPresent()) {
                     Block b = e.getClickedBlock().get();
-                    if (BlockStorage.getLocationInfo(b.getLocation(), "owner") != null && BlockStorage.getLocationInfo(b.getLocation(), "active") != null) {
+                    if (StorageCacheUtils.getData(b.getLocation(), "owner") != null && StorageCacheUtils.getData(b.getLocation(), "active") != null) {
 
                         SimpleLocation loc = new SimpleLocation(b.getX(), b.getY(), b.getZ(), b.getWorld().getUID().toString(), "forcefield");
 
@@ -66,7 +66,7 @@ public class RemoteController extends SlimefunItem implements NotPlaceable, Rech
 
                     Block b = world.getBlockAt(loc.getX(), loc.getY(), loc.getZ());
 
-                    if (BlockStorage.getLocationInfo(b.getLocation(), "owner") != null && BlockStorage.getLocationInfo(b.getLocation(), "active") != null) {
+                    if (StorageCacheUtils.getData(b.getLocation(), "owner") != null && StorageCacheUtils.getData(b.getLocation(), "active") != null) {
                         if (removeItemCharge(item, COST)) {
                             ForcefieldDome.INSTANCE.switchActive(b, e.getPlayer());
                         } else {

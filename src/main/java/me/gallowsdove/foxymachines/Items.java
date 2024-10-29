@@ -445,8 +445,8 @@ public final class Items{
             "&7生命偷取 I",
             "&7护甲穿透 I",
             "",
-            "&7迷惑敌人,增加伤害",
-            "&7有可能会对攻击者产生负面影响"
+            "&7迷惑敌人，增加伤害。",
+            "&7有可能会对攻击者产生负面影响。"
     );
 
     public static final SlimefunItemStack CELESTIAL_SWORD = new SlimefunItemStack(
