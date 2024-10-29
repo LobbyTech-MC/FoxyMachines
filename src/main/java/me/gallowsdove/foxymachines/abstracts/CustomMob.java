@@ -147,7 +147,11 @@ public abstract class CustomMob {
         }
     }
 
-    static {
+    private String getId() {
+		return id;
+	}
+
+	static {
         Events.registerListener(new Listener() {
 
             @EventHandler
