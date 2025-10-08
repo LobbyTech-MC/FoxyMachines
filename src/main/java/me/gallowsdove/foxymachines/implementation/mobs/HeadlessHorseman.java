@@ -24,10 +24,13 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 import javax.annotation.Nonnull;
 import java.util.concurrent.ThreadLocalRandom;
 
+@EnableAsync
 public class HeadlessHorseman extends CustomBoss {
 
     public static class AttackPattern {
@@ -44,6 +47,7 @@ public class HeadlessHorseman extends CustomBoss {
     }
 
     @Override
+    @Async
     public void onSpawn(@Nonnull LivingEntity spawned) {
         super.onSpawn(spawned);
 
@@ -64,11 +68,13 @@ public class HeadlessHorseman extends CustomBoss {
 
     @Nonnull
     @Override
+    @Async
     protected BossBarStyle getBossBarStyle() {
         return new BossBarStyle("无头骑士", BarColor.RED, BarStyle.SOLID, BarFlag.PLAY_BOSS_MUSIC);
     }
 
     @Override
+    @Async
     protected void onTarget(@Nonnull EntityTargetEvent event) {
         if (!(event.getTarget() instanceof Player)) {
             event.setCancelled(true);
@@ -76,6 +82,7 @@ public class HeadlessHorseman extends CustomBoss {
     }
 
     @Override
+    @Async
     protected void onAttack(@Nonnull EntityDamageByEntityEvent event) {
         if (!event.isCancelled()) {
             Utils.dealDamageBypassingArmor((LivingEntity) event.getEntity(), (event.getDamage() - event.getFinalDamage()) * 0.12);
@@ -83,6 +90,7 @@ public class HeadlessHorseman extends CustomBoss {
     }
 
     @Override
+    @Async
     public void onBossPattern(@Nonnull LivingEntity mob) {
         super.onBossPattern(mob);
 
@@ -102,6 +110,7 @@ public class HeadlessHorseman extends CustomBoss {
     }
 
     @Override
+    @Async
     public void onBossDamaged(@Nonnull EntityDamageEvent event) {
         super.onBossDamaged(event);
 
@@ -112,6 +121,7 @@ public class HeadlessHorseman extends CustomBoss {
     }
 
     @Override
+    @Async
     public void onMobTick(@Nonnull LivingEntity entity, int tick) {
         super.onMobTick(entity, tick);
 
@@ -180,6 +190,7 @@ public class HeadlessHorseman extends CustomBoss {
     }
 
     @Override
+    @Async
     public void onDeath(@Nonnull EntityDeathEvent event) {
         super.onDeath(event);
 
@@ -189,6 +200,7 @@ public class HeadlessHorseman extends CustomBoss {
         location.getWorld().spawn(location, ExperienceOrb.class).setExperience(2000 + ThreadLocalRandom.current().nextInt(800));
     }
 
+    @Async
     private void spawnHelldogs(Location location) {
         CustomMob helldog = CustomMob.getById("HELLDOG");
         if (helldog == null) {

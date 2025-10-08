@@ -13,12 +13,15 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
+@EnableAsync
 public class SacrificialAltarPiece extends SlimefunItem {
     public SacrificialAltarPiece(@Nonnull SlimefunItemStack item, @Nonnull ItemStack[] recipe, int amount) {
         super(Items.ALTAR_ITEM_GROUP, item, RecipeType.ENHANCED_CRAFTING_TABLE, recipe, new SlimefunItemStack(item, amount));
@@ -33,6 +36,7 @@ public class SacrificialAltarPiece extends SlimefunItem {
         return new BlockBreakHandler(false, false) {
             @ParametersAreNonnullByDefault
             @Override
+            @Async
             public void onPlayerBreak(BlockBreakEvent e, ItemStack item, List<ItemStack> drops) {
                 Block b = findAltar(e.getBlock());
 
@@ -50,6 +54,7 @@ public class SacrificialAltarPiece extends SlimefunItem {
     }
 
     @Nullable
+    @Async
     private Block findAltar(@Nonnull Block b) {
         for (int x = -1; x <= 1; x++) {
             for (int y = -1; y <= 1; y++) {

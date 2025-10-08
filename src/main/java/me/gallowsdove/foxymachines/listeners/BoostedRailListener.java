@@ -8,10 +8,13 @@ import org.bukkit.entity.Minecart;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.vehicle.VehicleMoveEvent;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 import javax.annotation.Nonnull;
 import java.util.Set;
 
+@EnableAsync
 public class BoostedRailListener implements Listener {
     private static final Set<Material> RAILS = Set.of(Material.RAIL, Material.ACTIVATOR_RAIL, Material.DETECTOR_RAIL, Material.POWERED_RAIL);
 
@@ -29,6 +32,7 @@ public class BoostedRailListener implements Listener {
         }
     }
 
+    @Async
     private boolean isBoostedRail(Block b) {
         return StorageCacheUtils.getSfItem(b.getLocation()) instanceof BoostedRail;
     }

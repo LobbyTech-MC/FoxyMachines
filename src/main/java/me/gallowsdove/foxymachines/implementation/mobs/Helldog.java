@@ -10,10 +10,13 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityTargetEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 import javax.annotation.Nonnull;
 import java.util.List;
 
+@EnableAsync
 public class Helldog extends CustomMob {
 
     public Helldog() {
@@ -21,6 +24,7 @@ public class Helldog extends CustomMob {
     }
 
     @Override
+    @Async
     public void onSpawn(@Nonnull LivingEntity spawned) {
         Wolf wolf = (Wolf) spawned;
 
@@ -33,6 +37,7 @@ public class Helldog extends CustomMob {
     }
 
     @Override
+    @Async
     public void onMobTick(@Nonnull LivingEntity entity, int tick) {
         Wolf helldog = (Wolf) entity;
 
@@ -63,6 +68,7 @@ public class Helldog extends CustomMob {
     }
 
     @Override
+    @Async
     public void onDeath(@Nonnull EntityDeathEvent event) {
         super.onDeath(event);
 
@@ -70,6 +76,7 @@ public class Helldog extends CustomMob {
     }
 
     @Override
+    @Async
     protected void onAttack(@Nonnull EntityDamageByEntityEvent event) {
         if (!event.isCancelled()) {
             Utils.dealDamageBypassingArmor((LivingEntity) event.getEntity(), (event.getDamage() - event.getFinalDamage()) * 0.2);
@@ -77,6 +84,7 @@ public class Helldog extends CustomMob {
     }
 
     @Override
+    @Async
     protected void onTarget(@Nonnull EntityTargetEvent event) {
         if (!(event.getTarget() instanceof Player)) {
             event.setCancelled(true);

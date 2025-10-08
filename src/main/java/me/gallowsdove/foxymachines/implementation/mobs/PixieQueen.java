@@ -20,11 +20,14 @@ import org.bukkit.event.entity.EntityTargetEvent;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
+@EnableAsync
 public class PixieQueen extends CustomBoss {
 
     public static class AttackPattern {
@@ -42,6 +45,7 @@ public class PixieQueen extends CustomBoss {
     }
 
     @Override
+    @Async
     public void onSpawn(@Nonnull LivingEntity spawned) {
         super.onSpawn(spawned);
 
@@ -53,11 +57,13 @@ public class PixieQueen extends CustomBoss {
 
     @Nonnull
     @Override
+    @Async
     protected BossBarStyle getBossBarStyle() {
         return new BossBarStyle("精灵女王", BarColor.GREEN, BarStyle.SOLID, BarFlag.PLAY_BOSS_MUSIC);
     }
 
     @Override
+    @Async
     protected void onTarget(@Nonnull EntityTargetEvent event) {
         if (!(event.getTarget() instanceof Player)) {
             event.setCancelled(true);
@@ -65,6 +71,7 @@ public class PixieQueen extends CustomBoss {
     }
 
     @Override
+    @Async
     protected void onAttack(@Nonnull EntityDamageByEntityEvent event) {
         if (!event.isCancelled()) {
             Utils.dealDamageBypassingArmor((LivingEntity) event.getEntity(), (event.getDamage() - event.getFinalDamage()) * 0.12);
@@ -72,6 +79,7 @@ public class PixieQueen extends CustomBoss {
     }
 
     @Override
+    @Async
     public void onBossPattern(@Nonnull LivingEntity mob) {
         super.onBossPattern(mob);
 
@@ -91,6 +99,7 @@ public class PixieQueen extends CustomBoss {
     }
 
     @Override
+    @Async
     public void onMobTick(@Nonnull LivingEntity entity, int tick) {
         super.onMobTick(entity, tick);
 
@@ -149,6 +158,7 @@ public class PixieQueen extends CustomBoss {
     }
 
     @Override
+    @Async
     public void onDeath(@Nonnull EntityDeathEvent event) {
         super.onDeath(event);
 
@@ -158,6 +168,7 @@ public class PixieQueen extends CustomBoss {
         loc.getWorld().spawn(loc, ExperienceOrb.class).setExperience(1400 + ThreadLocalRandom.current().nextInt(600));
     }
 
+    @Async
     private void summonPixieSwarm(Location location) {
         CustomMob mob = CustomMob.getById("PIXIE");
         if (mob == null) {

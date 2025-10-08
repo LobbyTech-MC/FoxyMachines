@@ -16,10 +16,13 @@ import org.bukkit.block.Block;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 import javax.annotation.Nonnull;
 import java.util.List;
 
+@EnableAsync
 public class SacrificialAltarPressurePlate extends SlimefunItem {
     public SacrificialAltarPressurePlate() {
         super(Items.ALTAR_ITEM_GROUP, Items.SACRIFICIAL_ALTAR_BLACKSTONE_PRESSURE_PLATE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
@@ -34,6 +37,7 @@ public class SacrificialAltarPressurePlate extends SlimefunItem {
         addItemHandler(onPlace(), onUse(), onBreak());
     }
 
+    @Async
     private BlockPlaceHandler onPlace() {
         return new BlockPlaceHandler(false) {
 
@@ -51,6 +55,7 @@ public class SacrificialAltarPressurePlate extends SlimefunItem {
         };
     }
 
+    @Async
     private BlockUseHandler onUse() {
         return e -> {
             Block b = e.getClickedBlock().get();
@@ -68,6 +73,7 @@ public class SacrificialAltarPressurePlate extends SlimefunItem {
         };
     }
 
+    @Async
     private BlockBreakHandler onBreak() {
         return new BlockBreakHandler(false, false) {
             @Override
@@ -79,6 +85,7 @@ public class SacrificialAltarPressurePlate extends SlimefunItem {
         };
     }
 
+    @Async
     private boolean isComplete(@Nonnull Block b) {
 
         if (b.getRelative(1, 1, 1).getType() != Material.POLISHED_BLACKSTONE_BRICK_STAIRS || !isAltarPiece(b.getRelative(1, 1, 1)) ||
@@ -120,6 +127,7 @@ public class SacrificialAltarPressurePlate extends SlimefunItem {
         return true;
     }
 
+    @Async
     private boolean isAltarPiece(@Nonnull Block b) {
         SlimefunBlockData blockData = StorageCacheUtils.getBlock(b.getLocation());
         if (blockData == null) {

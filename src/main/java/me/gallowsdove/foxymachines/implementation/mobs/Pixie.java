@@ -9,20 +9,25 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityTargetEvent;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 import javax.annotation.Nonnull;
 
+@EnableAsync
 public class Pixie extends CustomMob {
     public Pixie() {
         super("PIXIE", "精灵", EntityType.VEX, 5);
     }
 
     @Override
+    @Async
     public void onSpawn(@Nonnull LivingEntity spawned) {
         spawned.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).setBaseValue(24);
     }
 
     @Override
+    @Async
     public void onDeath(@Nonnull EntityDeathEvent event) {
         super.onDeath(event);
 
@@ -30,6 +35,7 @@ public class Pixie extends CustomMob {
     }
 
     @Override
+    @Async
     protected void onAttack(@Nonnull EntityDamageByEntityEvent event) {
         if (!event.isCancelled()) {
             Utils.dealDamageBypassingArmor((LivingEntity) event.getEntity(), (event.getDamage() - event.getFinalDamage()) * 0.2);
@@ -37,6 +43,7 @@ public class Pixie extends CustomMob {
     }
 
     @Override
+    @Async
     protected void onTarget(@Nonnull EntityTargetEvent event) {
         if (!(event.getTarget() instanceof Player)) {
             event.setCancelled(true);

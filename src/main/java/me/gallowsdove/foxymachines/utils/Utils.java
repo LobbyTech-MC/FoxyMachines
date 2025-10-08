@@ -8,6 +8,8 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.bukkit.Bukkit;
 
 import javax.annotation.Nonnull;
@@ -15,13 +17,16 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
+@EnableAsync
 public class Utils {
     private Utils() {}
 
+    @Async
     public static boolean isAuraSkillsLoaded() {
         return Bukkit.getPluginManager().isPluginEnabled("AuraSkills");
     }
 
+    @Async
     public static void dealDamageBypassingArmor(LivingEntity entity, double damage) {
         if (damage >= 0) {
             if (entity.getAbsorptionAmount() >= 0) {
@@ -43,6 +48,7 @@ public class Utils {
         }
     }
 
+    @Async
     public static int countItemInInventory(@Nonnull Inventory inventory, @Nonnull ItemStack itemStack) {
         int amount = 0;
         for (ItemStack item : inventory.getContents()) {
@@ -54,20 +60,24 @@ public class Utils {
         return amount;
     }
 
+    @Async
     public static boolean isWithinBox(Location centerLocation, Location location, double radius) {
         return isWithinBox(centerLocation, location, radius, radius, radius);
     }
 
+    @Async
     public static boolean isWithinBox(Location centerLocation, Location location, double x, double y, double z) {
         return Math.abs(centerLocation.getX() - location.getX()) <= x
                 && Math.abs(centerLocation.getY() - location.getY()) <= y
                 && Math.abs(centerLocation.getZ() - location.getZ()) <= z;
     }
 
+    @Async
     public static List<Player> getNearbyPlayersInSurvival(Location location, double radius) {
         return getNearbyPlayersInSurvival(location, radius, radius, radius);
     }
 
+    @Async
     public static List<Player> getNearbyPlayersInSurvival(Location location, double x, double y, double z) {
         World world = location.getWorld();
         if (world == null) {
@@ -83,10 +93,12 @@ public class Utils {
         return players;
     }
 
+    @Async
     public static Player getNearbyPlayerInSurvival(Location location, double radius) {
         return getNearbyPlayerInSurvival(location, radius, radius, radius);
     }
 
+    @Async
     public static @Nullable Player getNearbyPlayerInSurvival(Location location, double x, double y, double z) {
         World world = location.getWorld();
         if (world == null) {

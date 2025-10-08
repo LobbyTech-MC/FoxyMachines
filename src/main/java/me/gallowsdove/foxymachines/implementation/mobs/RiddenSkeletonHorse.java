@@ -12,11 +12,14 @@ import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.Set;
 
+@EnableAsync
 public class RiddenSkeletonHorse extends CustomMob {
     private static final Set<DamageCause> RESISTANCES = Set.of(DamageCause.CRAMMING, DamageCause.POISON, DamageCause.BLOCK_EXPLOSION, DamageCause.ENTITY_EXPLOSION);
 
@@ -25,6 +28,7 @@ public class RiddenSkeletonHorse extends CustomMob {
     }
 
     @Override
+    @Async
     public void onSpawn(@Nonnull LivingEntity spawned) {
         spawned.setCustomName("");
         spawned.setCustomNameVisible(false);
@@ -34,6 +38,7 @@ public class RiddenSkeletonHorse extends CustomMob {
     }
 
     @Override
+    @Async
     protected void onHit(@Nonnull EntityDamageEvent event) {
         if (RESISTANCES.contains(event.getCause())) {
             event.setCancelled(true);
@@ -57,6 +62,7 @@ public class RiddenSkeletonHorse extends CustomMob {
     }
 
     @Override
+    @Async
     protected void onDeath(@Nonnull EntityDeathEvent event) {
         super.onDeath(event);
 

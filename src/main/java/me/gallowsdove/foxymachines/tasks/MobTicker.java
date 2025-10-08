@@ -4,16 +4,20 @@ import me.gallowsdove.foxymachines.abstracts.CustomMob;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
+@EnableAsync
 public class MobTicker implements Runnable {
     int tick = 0;
 
     @Override
+    @Async
     public void run() {
         for (CustomMob mob : CustomMob.MOBS.values()) {
             mob.onUniqueTick(tick);
