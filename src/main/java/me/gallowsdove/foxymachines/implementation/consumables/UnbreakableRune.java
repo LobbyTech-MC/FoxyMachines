@@ -67,7 +67,7 @@ public class UnbreakableRune extends SimpleSlimefunItem<ItemDropHandler> {
         return (e, p, item) -> {
             if (isItem(item.getItemStack())) {
 
-                if (!SlimefunUtils.canPlayerUseItem(p, Items.UNBREAKABLE_RUNE , true)) {
+                if (!SlimefunUtils.canPlayerUseItem(p, Items.UNBREAKABLE_RUNE, true)) {
                     return true;
                 }
 
@@ -90,21 +90,19 @@ public class UnbreakableRune extends SimpleSlimefunItem<ItemDropHandler> {
 
         if (optional.isPresent()) {
             Item item = (Item) optional.get();
-            ItemStack itemStack = item.getItemStack();
+            ItemStack itemStack = item.getItemStack().clone();
 
             if (itemStack.getAmount() == 1) {
                 l.getWorld().strikeLightningEffect(l);
 
                 Scheduler.run(10, () -> {
-                    if (rune.isValid() && item.isValid() && itemStack.getAmount() == 1) {
-
+                    if (rune.isValid() && item.isValid() && itemStack.getAmount() == 1 && setUnbreakable(itemStack)) {
                         l.getWorld().createExplosion(l, 0);
                         l.getWorld().playSound(l, Sound.ENTITY_GENERIC_EXPLODE, 0.3F, 1);
 
                         item.remove();
                         rune.remove();
 
-                        setUnbreakable(itemStack);
                         l.getWorld().dropItemNaturally(l, itemStack);
 
                         p.sendMessage(ChatColor.LIGHT_PURPLE + "你的物品已经不可破坏了");
@@ -127,16 +125,20 @@ public class UnbreakableRune extends SimpleSlimefunItem<ItemDropHandler> {
         return false;
     }
 
-    public static void setUnbreakable(@Nullable ItemStack item) {
-        if (item != null && item.getType() != Material.AIR) {
-
-            if (!isUnbreakable(item) && item.hasItemMeta()) {
-                ItemMeta meta = item.getItemMeta();
-
-                meta.setUnbreakable(true);
-                item.setItemMeta(meta);
-            }
+    public static boolean setUnbreakable(@Nullable ItemStack item) {
+        if (item == null || item.getType().isAir() || isUnbreakable(item)) {
+            return false;
         }
+
+        ItemMeta meta = item.getItemMeta();
+        // if no meta is returned, we cant proceed
+        if (meta == null) {
+            return false;
+        }
+
+        meta.setUnbreakable(true);
+        item.setItemMeta(meta);
+        return true;
     }
 
     public static boolean isUnbreakable(@Nullable ItemStack item) {
