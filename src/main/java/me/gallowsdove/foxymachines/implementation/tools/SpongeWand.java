@@ -1,16 +1,30 @@
 package me.gallowsdove.foxymachines.implementation.tools;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
+import javax.annotation.Nonnull;
+
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.persistence.PersistentDataContainer;
 
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.config.Config;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
 import me.gallowsdove.foxymachines.FoxyMachines;
 import me.gallowsdove.foxymachines.Items;
 import me.gallowsdove.foxymachines.abstracts.AbstractWand;
+import me.gallowsdove.foxymachines.utils.SimpleLocation;
 
 public class SpongeWand extends AbstractWand {
     public SpongeWand() {
@@ -37,6 +51,7 @@ public class SpongeWand extends AbstractWand {
     @Override
     protected boolean blockPredicate(Player player, Block block) {
         return block.isLiquid() && Slimefun.getProtectionManager().hasPermission(player, block, Interaction.BREAK_BLOCK);
+    }
     protected List<Location> getLocations(@Nonnull Player player) {
         ArrayList<Location> locs = new ArrayList<>();
         PersistentDataContainer container = player.getPersistentDataContainer();
