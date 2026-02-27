@@ -1,8 +1,10 @@
 package me.gallowsdove.foxymachines.implementation.weapons;
 
-import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
-import me.gallowsdove.foxymachines.Items;
-import me.gallowsdove.foxymachines.utils.Utils;
+import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
+
+import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.attribute.Attribute;
@@ -13,9 +15,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
+import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import me.gallowsdove.foxymachines.Items;
+import me.gallowsdove.foxymachines.utils.Utils;
 
 public class CursedSword extends OnHitWeapon {
     public static final List<PotionEffect> EFFECTS = List.of(

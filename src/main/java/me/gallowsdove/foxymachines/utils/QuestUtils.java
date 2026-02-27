@@ -1,9 +1,12 @@
 package me.gallowsdove.foxymachines.utils;
 
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
-import me.gallowsdove.foxymachines.FoxyMachines;
-import me.gallowsdove.foxymachines.Items;
-import net.guizhanss.guizhanlib.minecraft.helper.entity.EntityTypeHelper;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.logging.Level;
+
+import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.ChatColor;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.EntityType;
@@ -12,11 +15,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
-import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
-import java.util.logging.Level;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import me.gallowsdove.foxymachines.FoxyMachines;
+import me.gallowsdove.foxymachines.Items;
+import net.guizhanss.guizhanlib.minecraft.helper.entity.EntityTypeHelper;
 
 public class QuestUtils {
     private QuestUtils() {}

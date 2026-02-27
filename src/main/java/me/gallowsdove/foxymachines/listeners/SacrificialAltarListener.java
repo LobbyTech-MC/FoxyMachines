@@ -1,9 +1,10 @@
 package me.gallowsdove.foxymachines.listeners;
 
-import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
-import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
-import me.gallowsdove.foxymachines.Items;
+import java.util.concurrent.ThreadLocalRandom;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
@@ -15,9 +16,11 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockFromToEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import java.util.concurrent.ThreadLocalRandom;
+import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
+import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
+
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import me.gallowsdove.foxymachines.Items;
 
 public class SacrificialAltarListener implements Listener {
     @EventHandler

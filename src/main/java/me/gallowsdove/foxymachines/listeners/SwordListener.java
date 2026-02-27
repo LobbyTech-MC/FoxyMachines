@@ -1,13 +1,5 @@
 package me.gallowsdove.foxymachines.listeners;
 
-import io.github.mooy1.infinitylib.common.Scheduler;
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
-import me.gallowsdove.foxymachines.Items;
-import me.gallowsdove.foxymachines.implementation.weapons.CelestialSword;
-import me.gallowsdove.foxymachines.implementation.weapons.CursedSword;
-import me.gallowsdove.foxymachines.implementation.weapons.OnHitWeapon;
-import me.gallowsdove.foxymachines.utils.QuestUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.LivingEntity;
@@ -20,6 +12,15 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
+
+import io.github.mooy1.infinitylib.common.Scheduler;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import me.gallowsdove.foxymachines.Items;
+import me.gallowsdove.foxymachines.implementation.weapons.CelestialSword;
+import me.gallowsdove.foxymachines.implementation.weapons.CursedSword;
+import me.gallowsdove.foxymachines.implementation.weapons.OnHitWeapon;
+import me.gallowsdove.foxymachines.utils.QuestUtils;
 
 public class SwordListener implements Listener {
     @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)

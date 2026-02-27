@@ -1,7 +1,7 @@
 package me.gallowsdove.foxymachines.implementation.mobs;
 
-import me.gallowsdove.foxymachines.abstracts.CustomMob;
-import me.gallowsdove.foxymachines.utils.Utils;
+import javax.annotation.Nonnull;
+
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
@@ -12,7 +12,8 @@ import org.bukkit.event.entity.EntityTargetEvent;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;
 
-import javax.annotation.Nonnull;
+import me.gallowsdove.foxymachines.abstracts.CustomMob;
+import me.gallowsdove.foxymachines.utils.Utils;
 
 @EnableAsync
 public class Pixie extends CustomMob {

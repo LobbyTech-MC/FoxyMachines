@@ -1,10 +1,7 @@
 package me.gallowsdove.foxymachines.listeners;
 
-import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.config.Config;
-import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
-import me.gallowsdove.foxymachines.FoxyMachines;
-import me.gallowsdove.foxymachines.Items;
+import javax.annotation.Nonnull;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -16,7 +13,11 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 
-import javax.annotation.Nonnull;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.config.Config;
+import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
+import me.gallowsdove.foxymachines.FoxyMachines;
+import me.gallowsdove.foxymachines.Items;
 
 public class ChunkLoaderListener implements Listener {
     @EventHandler(ignoreCancelled = true)

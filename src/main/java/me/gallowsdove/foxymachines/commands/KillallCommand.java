@@ -1,8 +1,11 @@
 package me.gallowsdove.foxymachines.commands;
 
-import io.github.mooy1.infinitylib.commands.SubCommand;
-import me.gallowsdove.foxymachines.abstracts.CustomBoss;
-import me.gallowsdove.foxymachines.abstracts.CustomMob;
+import java.util.List;
+import java.util.Set;
+import java.util.UUID;
+
+import javax.annotation.Nonnull;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -10,10 +13,9 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
-import javax.annotation.Nonnull;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
+import io.github.mooy1.infinitylib.commands.SubCommand;
+import me.gallowsdove.foxymachines.abstracts.CustomBoss;
+import me.gallowsdove.foxymachines.abstracts.CustomMob;
 
 public class KillallCommand extends SubCommand {
     public KillallCommand() {

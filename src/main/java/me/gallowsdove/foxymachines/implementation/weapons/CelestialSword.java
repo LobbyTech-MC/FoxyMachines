@@ -1,8 +1,9 @@
 package me.gallowsdove.foxymachines.implementation.weapons;
 
-import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
-import me.gallowsdove.foxymachines.Items;
-import me.gallowsdove.foxymachines.utils.Utils;
+import java.util.concurrent.ThreadLocalRandom;
+
+import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.Material;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.LivingEntity;
@@ -11,8 +12,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.concurrent.ThreadLocalRandom;
+import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import me.gallowsdove.foxymachines.Items;
+import me.gallowsdove.foxymachines.utils.Utils;
 
 public class CelestialSword extends OnHitWeapon {
     public CelestialSword() {

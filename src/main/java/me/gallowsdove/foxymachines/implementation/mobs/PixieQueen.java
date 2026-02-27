@@ -1,18 +1,25 @@
 package me.gallowsdove.foxymachines.implementation.mobs;
 
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.PersistentDataAPI;
-import me.gallowsdove.foxymachines.FoxyMachines;
-import me.gallowsdove.foxymachines.Items;
-import me.gallowsdove.foxymachines.abstracts.CustomBoss;
-import me.gallowsdove.foxymachines.abstracts.CustomMob;
-import me.gallowsdove.foxymachines.utils.Utils;
-import org.bukkit.*;
+import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
+
+import javax.annotation.Nonnull;
+
+import org.bukkit.ChatColor;
+import org.bukkit.Color;
+import org.bukkit.Location;
+import org.bukkit.NamespacedKey;
+import org.bukkit.Particle;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarFlag;
 import org.bukkit.boss.BarStyle;
-import org.bukkit.entity.*;
+import org.bukkit.entity.Arrow;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.ExperienceOrb;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.Vex;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.entity.EntityDeathEvent;
@@ -23,9 +30,13 @@ import org.bukkit.potion.PotionEffectType;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;
 
-import javax.annotation.Nonnull;
-import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.PersistentDataAPI;
+import me.gallowsdove.foxymachines.FoxyMachines;
+import me.gallowsdove.foxymachines.Items;
+import me.gallowsdove.foxymachines.abstracts.CustomBoss;
+import me.gallowsdove.foxymachines.abstracts.CustomMob;
+import me.gallowsdove.foxymachines.utils.Utils;
 
 @EnableAsync
 public class PixieQueen extends CustomBoss {

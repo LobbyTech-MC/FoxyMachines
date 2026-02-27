@@ -1,9 +1,7 @@
 package me.gallowsdove.foxymachines.listeners;
 
-import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
-import me.gallowsdove.foxymachines.FoxyMachines;
-import me.gallowsdove.foxymachines.Items;
-import me.gallowsdove.foxymachines.utils.Utils;
+import javax.annotation.Nonnull;
+
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.HumanEntity;
@@ -16,7 +14,10 @@ import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import javax.annotation.Nonnull;
+import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
+import me.gallowsdove.foxymachines.FoxyMachines;
+import me.gallowsdove.foxymachines.Items;
+import me.gallowsdove.foxymachines.utils.Utils;
 
 public class BowListener implements Listener {
 

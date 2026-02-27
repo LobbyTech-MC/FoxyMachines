@@ -1,5 +1,10 @@
 package me.gallowsdove.foxymachines.implementation.materials;
 
+import javax.annotation.Nonnull;
+
+import org.bukkit.ChatColor;
+import org.bukkit.inventory.ItemStack;
+
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
@@ -8,10 +13,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
 import me.gallowsdove.foxymachines.listeners.SacrificialAltarListener;
 import me.gallowsdove.foxymachines.utils.QuestUtils;
-import org.bukkit.ChatColor;
-import org.bukkit.inventory.ItemStack;
-
-import javax.annotation.Nonnull;
 
 public class ShardMaterial extends SimpleSlimefunItem<ItemDropHandler> {
     private final ChatColor color;

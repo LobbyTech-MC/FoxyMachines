@@ -1,16 +1,17 @@
 package me.gallowsdove.foxymachines.tasks;
 
-import me.gallowsdove.foxymachines.implementation.materials.GhostBlock;
+import java.util.HashSet;
+import java.util.UUID;
+
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.FallingBlock;
-import org.bukkit.util.Vector;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.util.Vector;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;
 
-import java.util.HashSet;
-import java.util.UUID;
+import me.gallowsdove.foxymachines.implementation.materials.GhostBlock;
 
 @EnableAsync
 public class GhostBlockTask extends BukkitRunnable {

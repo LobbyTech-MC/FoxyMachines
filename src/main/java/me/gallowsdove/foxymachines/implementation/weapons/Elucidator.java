@@ -1,15 +1,16 @@
 package me.gallowsdove.foxymachines.implementation.weapons;
 
-import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
-import me.gallowsdove.foxymachines.Items;
-import me.gallowsdove.foxymachines.utils.Utils;
+import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
 
-import javax.annotation.ParametersAreNonnullByDefault;
+import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import me.gallowsdove.foxymachines.Items;
+import me.gallowsdove.foxymachines.utils.Utils;
 
 public class Elucidator extends OnHitWeapon {
     public Elucidator(boolean customMobsEnabled) {

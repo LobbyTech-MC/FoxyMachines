@@ -1,7 +1,5 @@
 package me.gallowsdove.foxymachines.listeners;
 
-import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
-import me.gallowsdove.foxymachines.Items;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -9,6 +7,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.inventory.ItemStack;
+
+import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
+import me.gallowsdove.foxymachines.Items;
 
 public class ArmorListener implements Listener {
     @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)

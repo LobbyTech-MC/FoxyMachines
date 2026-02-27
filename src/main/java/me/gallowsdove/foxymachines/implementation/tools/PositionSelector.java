@@ -1,5 +1,12 @@
 package me.gallowsdove.foxymachines.implementation.tools;
 
+import javax.annotation.Nonnull;
+
+import org.bukkit.ChatColor;
+import org.bukkit.block.Block;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.NotPlaceable;
@@ -9,12 +16,6 @@ import io.github.thebusybiscuit.slimefun4.core.handlers.ToolUseHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import me.gallowsdove.foxymachines.Items;
 import me.gallowsdove.foxymachines.utils.SimpleLocation;
-import org.bukkit.ChatColor;
-import org.bukkit.block.Block;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
-
-import javax.annotation.Nonnull;
 
 public class PositionSelector extends SlimefunItem implements NotPlaceable, Rechargeable {
     public static final float COST = 4F;

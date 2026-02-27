@@ -1,9 +1,10 @@
 package me.gallowsdove.foxymachines.utils;
 
-import org.bukkit.block.Block;
+import java.util.ArrayList;
 
 import javax.annotation.Nonnull;
-import java.util.ArrayList;
+
+import org.bukkit.block.Block;
 
 public final class EmptySphereBlocks {
     private EmptySphereBlocks() {}

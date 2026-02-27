@@ -1,14 +1,9 @@
 package me.gallowsdove.foxymachines.implementation.tools;
 
-import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
-import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
-import io.github.thebusybiscuit.slimefun4.core.attributes.NotPlaceable;
-import io.github.thebusybiscuit.slimefun4.core.attributes.Rechargeable;
-import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
-import me.gallowsdove.foxymachines.Items;
-import me.gallowsdove.foxymachines.implementation.machines.ForcefieldDome;
-import me.gallowsdove.foxymachines.utils.SimpleLocation;
+import java.util.UUID;
+
+import javax.annotation.Nonnull;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
@@ -17,8 +12,16 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 
-import javax.annotation.Nonnull;
-import java.util.UUID;
+import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
+
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import io.github.thebusybiscuit.slimefun4.core.attributes.NotPlaceable;
+import io.github.thebusybiscuit.slimefun4.core.attributes.Rechargeable;
+import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
+import me.gallowsdove.foxymachines.Items;
+import me.gallowsdove.foxymachines.implementation.machines.ForcefieldDome;
+import me.gallowsdove.foxymachines.utils.SimpleLocation;
 
 public class RemoteController extends SlimefunItem implements NotPlaceable, Rechargeable {
     private static final float COST = 50F;

@@ -1,8 +1,9 @@
 package me.gallowsdove.foxymachines.utils;
 
+import org.bukkit.block.Block;
+
 import dev.aurelium.auraskills.api.AuraSkillsBukkitProvider;
 import dev.aurelium.auraskills.api.region.Regions;
-import org.bukkit.block.Block;
 
 public class AuraSkillsCompat {
     public static void addPlacedBlock(Block block) {

@@ -1,7 +1,9 @@
 package me.gallowsdove.foxymachines.listeners;
 
-import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
-import me.gallowsdove.foxymachines.implementation.machines.BoostedRail;
+import java.util.Set;
+
+import javax.annotation.Nonnull;
+
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Minecart;
@@ -11,8 +13,9 @@ import org.bukkit.event.vehicle.VehicleMoveEvent;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;
 
-import javax.annotation.Nonnull;
-import java.util.Set;
+import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
+
+import me.gallowsdove.foxymachines.implementation.machines.BoostedRail;
 
 @EnableAsync
 public class BoostedRailListener implements Listener {

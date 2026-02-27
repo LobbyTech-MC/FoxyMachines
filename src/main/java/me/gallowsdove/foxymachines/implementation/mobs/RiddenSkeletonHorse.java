@@ -1,7 +1,10 @@
 package me.gallowsdove.foxymachines.implementation.mobs;
 
-import me.gallowsdove.foxymachines.abstracts.CustomBoss;
-import me.gallowsdove.foxymachines.abstracts.CustomMob;
+import java.util.List;
+import java.util.Set;
+
+import javax.annotation.Nonnull;
+
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -15,9 +18,8 @@ import org.bukkit.potion.PotionEffectType;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;
 
-import javax.annotation.Nonnull;
-import java.util.List;
-import java.util.Set;
+import me.gallowsdove.foxymachines.abstracts.CustomBoss;
+import me.gallowsdove.foxymachines.abstracts.CustomMob;
 
 @EnableAsync
 public class RiddenSkeletonHorse extends CustomMob {

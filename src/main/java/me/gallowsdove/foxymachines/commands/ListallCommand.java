@@ -1,12 +1,14 @@
 package me.gallowsdove.foxymachines.commands;
 
-import io.github.mooy1.infinitylib.commands.SubCommand;
-import me.gallowsdove.foxymachines.abstracts.CustomMob;
+import java.util.List;
+
+import javax.annotation.Nonnull;
+
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
-import javax.annotation.Nonnull;
-import java.util.List;
+import io.github.mooy1.infinitylib.commands.SubCommand;
+import me.gallowsdove.foxymachines.abstracts.CustomMob;
 
 public class ListallCommand extends SubCommand {
     public ListallCommand() {

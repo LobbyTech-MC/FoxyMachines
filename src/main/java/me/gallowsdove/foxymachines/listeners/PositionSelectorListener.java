@@ -1,11 +1,5 @@
 package me.gallowsdove.foxymachines.listeners;
 
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
-import io.github.thebusybiscuit.slimefun4.core.attributes.Rechargeable;
-import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
-import me.gallowsdove.foxymachines.Items;
-import me.gallowsdove.foxymachines.implementation.tools.PositionSelector;
-import me.gallowsdove.foxymachines.utils.SimpleLocation;
 import org.bukkit.ChatColor;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -14,6 +8,13 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import io.github.thebusybiscuit.slimefun4.core.attributes.Rechargeable;
+import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
+import me.gallowsdove.foxymachines.Items;
+import me.gallowsdove.foxymachines.implementation.tools.PositionSelector;
+import me.gallowsdove.foxymachines.utils.SimpleLocation;
 
 public class PositionSelectorListener implements Listener {
     @EventHandler

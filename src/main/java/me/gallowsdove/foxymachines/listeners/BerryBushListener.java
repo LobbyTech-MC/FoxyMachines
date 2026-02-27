@@ -1,9 +1,7 @@
 package me.gallowsdove.foxymachines.listeners;
 
-import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
-import me.gallowsdove.foxymachines.Items;
-import me.gallowsdove.foxymachines.implementation.tools.BerryBushTrimmer;
-import me.gallowsdove.foxymachines.utils.SimpleLocation;
+import javax.annotation.Nonnull;
+
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
@@ -12,7 +10,10 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageByBlockEvent;
 import org.bukkit.event.player.PlayerShearEntityEvent;
 
-import javax.annotation.Nonnull;
+import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
+import me.gallowsdove.foxymachines.Items;
+import me.gallowsdove.foxymachines.implementation.tools.BerryBushTrimmer;
+import me.gallowsdove.foxymachines.utils.SimpleLocation;
 
 public class BerryBushListener implements Listener {
     @EventHandler(ignoreCancelled = true)

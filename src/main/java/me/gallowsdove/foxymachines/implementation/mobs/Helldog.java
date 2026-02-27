@@ -1,10 +1,15 @@
 package me.gallowsdove.foxymachines.implementation.mobs;
 
-import me.gallowsdove.foxymachines.abstracts.CustomMob;
-import me.gallowsdove.foxymachines.utils.Utils;
+import java.util.List;
+
+import javax.annotation.Nonnull;
+
 import org.bukkit.DyeColor;
 import org.bukkit.attribute.Attribute;
-import org.bukkit.entity.*;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.Wolf;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityTargetEvent;
@@ -13,8 +18,8 @@ import org.bukkit.potion.PotionEffectType;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;
 
-import javax.annotation.Nonnull;
-import java.util.List;
+import me.gallowsdove.foxymachines.abstracts.CustomMob;
+import me.gallowsdove.foxymachines.utils.Utils;
 
 @EnableAsync
 public class Helldog extends CustomMob {

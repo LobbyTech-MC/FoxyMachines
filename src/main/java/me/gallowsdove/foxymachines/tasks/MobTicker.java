@@ -1,16 +1,17 @@
 package me.gallowsdove.foxymachines.tasks;
 
-import me.gallowsdove.foxymachines.abstracts.CustomMob;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
+
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;
 
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
+import me.gallowsdove.foxymachines.abstracts.CustomMob;
 
 @EnableAsync
 public class MobTicker implements Runnable {

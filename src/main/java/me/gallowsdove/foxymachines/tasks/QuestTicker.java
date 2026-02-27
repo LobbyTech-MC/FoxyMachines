@@ -1,14 +1,15 @@
 package me.gallowsdove.foxymachines.tasks;
 
-import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
-import me.gallowsdove.foxymachines.Items;
-import me.gallowsdove.foxymachines.utils.QuestUtils;
+import java.util.concurrent.ThreadLocalRandom;
+
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;
 
-import java.util.concurrent.ThreadLocalRandom;
+import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
+import me.gallowsdove.foxymachines.Items;
+import me.gallowsdove.foxymachines.utils.QuestUtils;
 
 @EnableAsync
 public class QuestTicker implements Runnable{
